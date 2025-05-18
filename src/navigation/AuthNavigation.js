@@ -1,7 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import * as React from 'react';
 import LoginScreen from '../screens/Auth/Login/LoginScreen';
-import PasswordChangeScreen from '../screens/Auth/PasswordChange/PaswordChanges';
+import SplashScreen from '../screens/SplashScreen';
 
 const Stack = createStackNavigator();
 
@@ -23,11 +23,11 @@ export default function AuthNavigation({navigation}) {
         component={LoginScreen}
         options={{gestureEnabled: false}}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="PasswordChange"
         component={PasswordChangeScreen}
         options={{gestureEnabled: false}}
-      />
+      /> */}
     </Stack.Navigator>
   );
 }

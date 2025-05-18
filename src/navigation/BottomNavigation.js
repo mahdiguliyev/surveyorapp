@@ -1,9 +1,8 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import HomeStack from './stack/HomeStack';
-
 import HomeIcon from '@assets/svg/navigation/HomeIcon';
 import CustomTabBar from './CustomTabBar';
+import HomeStack from './stack/HomeStack';
 
 const Tab = createBottomTabNavigator();
 
