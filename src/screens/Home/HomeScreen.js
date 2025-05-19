@@ -1,32 +1,64 @@
-import {StyleSheet, View, ScrollView, Text} from 'react-native';
+import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {useCallback, useRef, useState} from 'react';
+
 import {COLORS} from '@components/styles/colors';
 import {HomeThemeProvider} from './context/HomeThemeProvider';
-import AppText from '../../components/AppText';
-import MonthlyBonusCard from './components/MonthlyBonusCard';
+import Table from '../../components/general/ReportList';
+import Header from '../../components/Header';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import LinearGradientHome from './components/LinearGradientHome';
+import NavbarContentSwitcher from './components/NavbarContentSwitcher';
+import NavbarButton from './components/NavbarButton';
+import {useFocusEffect} from '@react-navigation/native';
+import UnusedPhotos from './components/UnusedPhotos';
 
 export default function HomeScreen({navigation}) {
+  const insets = useSafeAreaInsets();
+  const [activeTab, setActiveTab] = useState(0);
+  const [animateHighlight, setAnimateHighlight] = useState(true);
+  const highlightRef = useRef(null);
+
   const handleTabPress = index => {
-    if (index === 2) {
-      navigation.navigate('AccountStack');
-    } else {
-      setAnimateHighlight(true);
-      setActiveTab(index);
-    }
+    setAnimateHighlight(true);
+    setActiveTab(index);
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      setAnimateHighlight(false);
+      setActiveTab(0);
+    }, []),
+  );
+
+  const handleTransferPress = () => {
+    //navigation.navigate('ReportDetail');
+    alert('ReportDetail screen');
   };
 
   return (
     <HomeThemeProvider>
-      <ScrollView
-        style={styles.container}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.scroll_padding}>
+      <View style={styles.container}>
         <View style={styles.container}>
+          <View style={[styles.home_card_section, {paddingTop: insets.top}]}>
+            <LinearGradientHome />
+            <Header />
+            <View>
+              <NavbarButton
+                activeTab={activeTab}
+                onTabPress={handleTabPress}
+                highlightRef={highlightRef}
+                animateHighlight={animateHighlight}
+              />
+              <View>
+                <NavbarContentSwitcher activeTab={activeTab} />
+              </View>
+            </View>
+          </View>
           <View style={styles.content}>
-            <MonthlyBonusCard />
+            <UnusedPhotos />
           </View>
         </View>
-      </ScrollView>
+      </View>
     </HomeThemeProvider>
   );
 }
@@ -36,37 +68,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.white,
   },
-  scroll_padding: {
-    paddingBottom: 120,
-  },
   home_card_section: {
     paddingHorizontal: 20,
-    paddingBottom: 30,
+    paddingBottom: 10,
     borderBottomRightRadius: 20,
     borderBottomLeftRadius: 20,
     overflow: 'hidden',
-  },
-  home_card_section_logo: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    zIndex: 1,
-  },
-  card_short_buttom_group: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  card_short_buttom_group_btn: {
-    paddingVertical: 13,
-    borderColor: 'rgba(255, 255, 255, 0.5)',
-    borderWidth: 1,
-    borderRadius: 20,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 10,
-    width: 90,
   },
   content: {
     flex: 1,

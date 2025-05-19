@@ -3,7 +3,6 @@ import {Formik} from 'formik';
 import {View, Pressable} from 'react-native';
 import FormInput from '@components/form/FormInput';
 import ButtonForm from '@components/form/ButtonForm';
-import ArrowUpIcon from '@assets/svg/ArrowUpIcon';
 import LockIcon from '@assets/svg/LockIcon';
 import UserIcon from '@assets/svg/UserIcon';
 import styles from '../style.login';

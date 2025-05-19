@@ -6,11 +6,11 @@ import {useNetInfo} from '@react-native-community/netinfo';
 import MainNavigator from './src/navigation/MainNavigation';
 import {NavigationContainer} from '@react-navigation/native';
 import LoginProvider from './src/common/context/LoginProvider';
-import BootSplash from 'react-native-bootsplash';
+//import BootSplash from 'react-native-bootsplash';
 
-import Error from './src/components/Error';
-import UpdateAvailable from './src/components/UpdateAvailable';
-import Loader from './src/components/Loader';
+//import Error from './src/components/Error';
+//import UpdateAvailable from './src/components/UpdateAvailable';
+//import Loader from './src/components/Loader';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const App = () => {
@@ -20,23 +20,24 @@ const App = () => {
   const [versionInfo, setVersionInfo] = useState({version: '1.1.1'});
 
   useEffect(() => {
-    BootSplash.hide({fade: true, duration: 300});
+    //BootSplash.hide({fade: true, duration: 300});
   }, []);
 
-  return !loading ? (
+  return (
+    /* !loading ? ( */
     <GestureHandlerRootView style={styles.container}>
       <View style={[styles.container]}>
-        {!updateRequired ? (
+        {/* {!updateRequired ? (
           <>
             {checkConnection.isConnected ||
-            checkConnection.isConnected === null ? (
-              <LoginProvider>
-                <NavigationContainer>
-                  <MainNavigator />
-                  {/*  <Toast config={toastConfig} /> */}
-                </NavigationContainer>
-              </LoginProvider>
-            ) : (
+            checkConnection.isConnected === null ? ( */}
+        <LoginProvider>
+          <NavigationContainer>
+            <MainNavigator />
+            {/*  <Toast config={toastConfig} /> */}
+          </NavigationContainer>
+        </LoginProvider>
+        {/* ) : (
               <Error
                 errorDetail={{
                   title: 'messages.notification.internet_connection.title',
@@ -47,12 +48,13 @@ const App = () => {
           </>
         ) : (
           <UpdateAvailable version={versionInfo.version} />
-        )}
+        )} */}
       </View>
     </GestureHandlerRootView>
-  ) : (
-    <Loader />
   );
+  /* ) : (
+    <Loader />
+  ); */
 };
 
 const styles = StyleSheet.create({

@@ -3,13 +3,14 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStack from '../stack/HomeStack';
 import CustomTabBar from '../CustomTabBar';
 import HomeIcon from '@assets/svg/navigation/HomeIcon';
+import {COLORS} from '../../components/styles/colors';
 
 const Tab = createBottomTabNavigator();
 
 const createTabOptions = (label, IconComponent) => ({
   tabBarLabel: null,
   tabBarIcon: ({focused}) => (
-    <IconComponent color={focused ? '#0B5AAE' : '#C2C2C2'} />
+    <IconComponent color={focused ? COLORS.primary : '#C2C2C2'} />
   ),
 });
 

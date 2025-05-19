@@ -3,7 +3,7 @@ export const COLORS = {
   black: '#000',
   black300: '#393839',
   blackShadow: '#222',
-  primary: '#0B5AAE',
+  primary: '#c158dd',
   currencyAZN: '#6fb1f5',
   currencyUSD: 'green',
   currencyEUR: 'orange',
@@ -41,5 +41,5 @@ export const COLORS = {
   successGreen: '#35D51C',
   bottomTabColor: '#BABABA',
   loginButtonColor: '#0B5AAE',
-  inputGray:'#A3A3A3',
+  inputGray: '#A3A3A3',
 };
