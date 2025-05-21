@@ -4,6 +4,7 @@ import HomeStack from '../stack/HomeStack';
 import CustomTabBar from '../CustomTabBar';
 import HomeIcon from '@assets/svg/navigation/HomeIcon';
 import {COLORS} from '../../components/styles/colors';
+import CameraStack from '../stack/CameraStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -27,11 +28,11 @@ const SurveyorTabs = () => {
         component={HomeStack}
         options={() => createTabOptions('Home', HomeIcon)}
       />
-      {/* <Tab.Screen
-        name="SurveyStack"
-        component={SurveyStack}
-        options={() => createTabOptions('Survey', HomeIcon)}
-      /> */}
+      <Tab.Screen
+        name="CameraStack"
+        component={CameraStack}
+        options={() => createTabOptions('Home', HomeIcon)}
+      />
     </Tab.Navigator>
   );
 };
