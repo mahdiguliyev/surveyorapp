@@ -1,5 +1,11 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {View, TouchableOpacity, Alert, StyleSheet} from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Alert,
+  StyleSheet,
+  Platform,
+} from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import AppText from '@components/AppText';
 
@@ -7,6 +13,7 @@ import UserHeaderIcon from '@assets/svg/UserHeaderIcon';
 import NotificationIcon from '@assets/svg/NotificationIcon';
 import MessagesIcon from '@assets/svg/MessagesIcon';
 import {useAuthentication} from '../common/context/LoginProvider';
+import {verticalScale} from '../common/Metrics';
 
 const Header = () => {
   const navigation = useNavigation();
@@ -62,6 +69,7 @@ export default Header;
 
 const styles = StyleSheet.create({
   header_main: {
+    marginTop: Platform.OS === 'android' ? verticalScale(15) : verticalScale(0),
     marginBottom: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',

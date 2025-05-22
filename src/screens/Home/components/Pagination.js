@@ -1,4 +1,4 @@
-import {StyleSheet, View, Dimensions, Pressable} from 'react-native';
+import {StyleSheet, View, Dimensions, Pressable, Platform} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   interpolate,
@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: verticalScale(110),
+    marginBottom:
+      Platform.OS === 'ios' ? verticalScale(110) : verticalScale(130),
   },
   dot: {
     height: 8,
