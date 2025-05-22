@@ -5,6 +5,7 @@ import Animated, {
   Extrapolation,
 } from 'react-native-reanimated';
 import {COLORS} from '../../../components/styles/colors';
+import {verticalScale} from '../../../common/Metrics';
 
 const {width} = Dimensions.get('screen');
 
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: 130,
+    marginBottom: verticalScale(110),
   },
   dot: {
     height: 8,

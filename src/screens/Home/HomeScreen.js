@@ -30,11 +30,6 @@ export default function HomeScreen({navigation}) {
     }, []),
   );
 
-  const handleTransferPress = () => {
-    //navigation.navigate('ReportDetail');
-    alert('ReportDetail screen');
-  };
-
   return (
     <HomeThemeProvider>
       <View style={styles.container}>

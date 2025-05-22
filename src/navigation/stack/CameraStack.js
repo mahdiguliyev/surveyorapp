@@ -16,15 +16,6 @@ const CameraStack = ({navigation}) => {
           headerShown: false,
         }}
       />
-      {/* <Stack.Screen
-        name="Notification"
-        component={NotificationScreen}
-        options={{
-          headerTitleAlign: 'center',
-          gestureEnabled: true,
-          headerShown: false,
-        }}
-      /> */}
     </Stack.Navigator>
   );
 };

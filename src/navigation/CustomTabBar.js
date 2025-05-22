@@ -8,41 +8,11 @@ import Animated, {
 } from 'react-native-reanimated';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 
-const hiddenTabRoutes = [
-  'C2COtherCards',
-  'C2CConfirmation',
-  'AniPayConfirmation',
-  'C2CInvoice',
-  'TransferInvoice',
-  'InvoiceDetail',
-  'TransferToOtherAccount',
-  'TransferBetweenAccount',
-  'CreditCardDeptPayment',
-  'CreditCardPaymentInvoice',
-  'AniPay',
-  'Notification',
-  'AccountInvoiceDetail',
-  'CardSettings',
-  'Utilities',
-  'UtilityForm',
-  'UtilityPaymentForm',
-  'UtilityConfirmation',
-  'UtilityServiceList',
-  'Profile',
-  'Map',
-  'Settings',
-  'Security',
-  'Contact',
-  'CardDetail',
-  'AccountDetail',
-  'SettingPdfView',
-  'AniPayRegister',
-  'AniPayConfiguration',
-  'CreditDetail',
-];
+const hiddenTabRoutes = ['CameraStack'];
 const getTabVisibility = state => {
   const route = state.routes[state.index];
   const nestedRouteName = getFocusedRouteNameFromRoute(route) ?? route.name;
+  console.log('Current nested route:', nestedRouteName);
   return hiddenTabRoutes.includes(nestedRouteName) ? 'none' : 'flex';
 };
 
