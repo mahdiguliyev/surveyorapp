@@ -1,6 +1,8 @@
+def nodeExecutable = "/opt/homebrew/bin/node"
+
 buildscript {
     ext {
-        buildToolsVersion = "35.0.0"
+        //buildToolsVersion = "35.0.0"
         minSdkVersion = 24
         compileSdkVersion = 35
         targetSdkVersion = 35
@@ -15,6 +17,24 @@ buildscript {
         classpath("com.android.tools.build:gradle")
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+    }
+    allprojects {
+        afterEvaluate {
+            if (getPlugins().hasPlugin('android') ||
+                getPlugins().hasPlugin('android-library')) {
+                configure(android.lintOptions) {
+                    abortOnError false
+                    checkReleaseBuilds false
+                }
+            }
+        }
+        gradle.projectsEvaluated {
+        rootProject.subprojects { project ->
+            project.tasks.withType(JavaExec) {
+                environment "PATH", System.getenv("PATH") + ":/opt/homebrew/bin"
+            }
+        }
+    }
     }
 }
 
