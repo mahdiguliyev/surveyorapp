@@ -3,6 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStack from '../stack/HomeStack';
 import CustomTabBar from '../CustomTabBar';
 import HomeIcon from '@assets/svg/navigation/HomeIcon';
+import PhotoCameraIcon from '@assets/svg/navigation/PhotoCameraIcon';
 import {COLORS} from '../../components/styles/colors';
 import CameraStack from '../stack/CameraStack';
 
@@ -31,7 +32,7 @@ const SurveyorTabs = () => {
       <Tab.Screen
         name="CameraStack"
         component={CameraStack}
-        options={() => createTabOptions('Home', HomeIcon)}
+        options={() => createTabOptions('Camera', PhotoCameraIcon)}
       />
     </Tab.Navigator>
   );

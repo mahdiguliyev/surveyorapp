@@ -107,6 +107,7 @@ const CameraScreen = () => {
             Alert.alert('Error', response.errorMessage || 'Camera error');
           } else {
             const uri = response.assets?.[0]?.uri;
+            console.log('Photo captured:', uri);
             setPhotoUri(uri);
           }
         },
@@ -154,7 +155,17 @@ const CameraScreen = () => {
         )}
 
         <View style={styles.bottomBar}>
-          <TouchableOpacity style={styles.bottomBarThumbnail}>
+          <TouchableOpacity
+            style={styles.bottomBarThumbnail}
+            onPress={() => {
+              //navigation.navigate('Test');
+              if (photoUri) {
+                console.log('Photo url:', photoUri);
+                navigation.navigate('PhotoEdit', {
+                  photoUrl: photoUri, // e.g. after taking a photo
+                });
+              }
+            }}>
             {photoUri ? (
               <Image
                 source={{uri: photoUri}}
@@ -280,8 +291,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 25,
-    paddingTop: Platform.OS === 'ios' ? 100 : 70,
+    paddingHorizontal: horizontalScale(25),
+    paddingTop: Platform.OS === 'ios' ? verticalScale(100) : verticalScale(70),
     position: 'absolute',
     top: 0,
     left: 0,
@@ -384,7 +395,6 @@ const styles = StyleSheet.create({
     height: '100%',
     resizeMode: 'cover',
   },
-
   captureButton: {
     width: horizontalScale(70),
     height: verticalScale(70),
