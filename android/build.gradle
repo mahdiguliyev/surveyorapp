@@ -1,8 +1,8 @@
-def nodeExecutable = "/opt/homebrew/bin/node"
+//def nodeExecutable = "/opt/homebrew/bin/node"
 
 buildscript {
     ext {
-        //buildToolsVersion = "35.0.0"
+        buildToolsVersion = "35.0.0"
         minSdkVersion = 24
         compileSdkVersion = 35
         targetSdkVersion = 35
@@ -30,14 +30,13 @@ buildscript {
                 }
             }
         }
-        gradle.projectsEvaluated {
-        rootProject.subprojects { project ->
-            project.tasks.withType(JavaExec) {
-                environment "PATH", System.getenv("PATH") + ":/opt/homebrew/bin"
+        /* gradle.projectsEvaluated {
+            rootProject.subprojects { project ->
+                project.tasks.withType(JavaExec) {
+                    environment "PATH", System.getenv("PATH") + ":/opt/homebrew/bin"
+                }
             }
-        }
-    }
-    }
+         */}
 }
 
 apply plugin: "com.facebook.react.rootproject"
