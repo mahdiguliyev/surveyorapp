@@ -5,7 +5,7 @@ const NotificationIcon = () => {
     <Svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
-      height="25"
+      height="30"
       viewBox="0 0 24 25"
       fill="none">
       <Path

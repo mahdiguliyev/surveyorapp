@@ -11,7 +11,8 @@ import AppText from '@components/AppText';
 
 import UserHeaderIcon from '@assets/svg/UserHeaderIcon';
 import NotificationIcon from '@assets/svg/NotificationIcon';
-import MessagesIcon from '@assets/svg/MessagesIcon';
+import ProjectsIcon from '@assets/svg/ProjectsIcon';
+import ContractorIcon from '@assets/svg/ContractorIcon';
 import {useAuthentication} from '../common/context/LoginProvider';
 import {verticalScale} from '../common/Metrics';
 
@@ -52,12 +53,17 @@ const Header = () => {
       <View style={styles.header_button}>
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={() => Alert.alert('Messages')}>
-          <MessagesIcon />
+          onPress={() => Alert.alert('Projects')}>
+          <ProjectsIcon />
         </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={() => navigation.navigate('Notification')}>
+          onPress={() => Alert.alert('Contractors')}>
+          <ContractorIcon />
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => Alert.alert('Notifications')}>
           <NotificationIcon />
         </TouchableOpacity>
       </View>
