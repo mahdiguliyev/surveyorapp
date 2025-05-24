@@ -6,7 +6,7 @@ import {useNetInfo} from '@react-native-community/netinfo';
 import MainNavigator from './src/navigation/MainNavigation';
 import {NavigationContainer} from '@react-navigation/native';
 import LoginProvider from './src/common/context/LoginProvider';
-//import BootSplash from 'react-native-bootsplash';
+import BootSplash from 'react-native-bootsplash';
 
 //import Error from './src/components/Error';
 //import UpdateAvailable from './src/components/UpdateAvailable';
@@ -20,7 +20,7 @@ const App = () => {
   const [versionInfo, setVersionInfo] = useState({version: '1.1.1'});
 
   useEffect(() => {
-    //BootSplash.hide({fade: true, duration: 300});
+    BootSplash.hide({fade: true, duration: 300});
   }, []);
 
   return (

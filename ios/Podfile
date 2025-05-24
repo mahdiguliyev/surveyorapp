@@ -59,4 +59,5 @@ target 'Surveyor' do
   end
 
   pod 'RNFS', :path => '../node_modules/react-native-fs'
+  pod 'RNBootSplash', :path => '../node_modules/react-native-bootsplash'
 end

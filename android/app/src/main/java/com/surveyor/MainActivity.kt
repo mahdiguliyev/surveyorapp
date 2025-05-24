@@ -1,9 +1,18 @@
 package com.surveyor
+import android.content.Context
+import android.os.Bundle
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
+import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
 import com.facebook.react.defaults.DefaultReactActivityDelegate
+
+import com.zoontek.rnbootsplash.RNBootSplash
+
+
+import java.io.File
+
 
 class MainActivity : ReactActivity() {
 
@@ -19,4 +28,37 @@ class MainActivity : ReactActivity() {
    */
   override fun createReactActivityDelegate(): ReactActivityDelegate =
       DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled)
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    RNBootSplash.init(this, R.style.BootTheme)
+    deleteCache()
+    super.onCreate(null) // or super.onCreate(null) with react-native-screens
+  }
+
+  private fun deleteCache() {
+    try {
+        val context: Context = applicationContext
+        val dir: File? = context.cacheDir
+        if (dir != null) {
+            deleteDir(dir)
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+  }
+
+  private fun deleteDir(dir: File): Boolean {
+    return if (dir.isDirectory) {
+        val children: Array<String>? = dir.list()
+        children?.forEach { child ->
+            val success = deleteDir(File(dir, child))
+            if (!success) {
+                return false
+            }
+        }
+        dir.delete()
+    } else {
+        dir.delete()
+    }
+  }
 }
