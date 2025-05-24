@@ -159,12 +159,12 @@ const CameraScreen = () => {
             style={styles.bottomBarThumbnail}
             onPress={() => {
               //navigation.navigate('Test');
-              if (photoUri) {
+              /* if (photoUri) {
                 console.log('Photo url:', photoUri);
                 navigation.navigate('PhotoEdit', {
                   photoUrl: photoUri, // e.g. after taking a photo
                 });
-              }
+              } */
             }}>
             {photoUri ? (
               <Image
@@ -192,7 +192,7 @@ const CameraScreen = () => {
   };
 
   const renderContent = () => {
-    if (isEmulator) {
+    /* if (isEmulator) {
       return (
         <View style={styles.center}>
           <Text style={styles.infoText}>
@@ -200,7 +200,7 @@ const CameraScreen = () => {
           </Text>
         </View>
       );
-    }
+    } */
 
     if (cameraPermissionStatus == null || isLoadingPermissions) {
       return (
@@ -274,7 +274,7 @@ const CameraScreen = () => {
             onPress={() => {
               alert('Image saved');
             }}>
-            <PlusIcon />
+            <PlusIcon color={COLORS.black} />
           </TouchableOpacity>
         </View>
         {renderContent()}

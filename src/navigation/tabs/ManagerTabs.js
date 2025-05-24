@@ -3,13 +3,18 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStack from '../stack/HomeStack';
 import CustomTabBar from '../CustomTabBar';
 import HomeIcon from '@assets/svg/navigation/HomeIcon';
+import PhotoCameraIcon from '@assets/svg/navigation/PhotoCameraIcon';
+import GalleryIcon from '@assets/svg/navigation/GalleryIcon';
+import CameraStack from '../stack/CameraStack';
+import GalleryStack from '../stack/GalleryStack';
+import {COLORS} from '../../components/styles/colors';
 
 const Tab = createBottomTabNavigator();
 
 const createTabOptions = (label, IconComponent) => ({
   tabBarLabel: label,
   tabBarIcon: ({focused}) => (
-    <IconComponent color={focused ? '#0B5AAE' : '#C2C2C2'} />
+    <IconComponent color={focused ? COLORS.primary : '#C2C2C2'} />
   ),
 });
 
@@ -27,10 +32,15 @@ const ManagerTabs = () => {
         options={() => createTabOptions('Home', HomeIcon)}
       />
       {/* <Tab.Screen
-        name="SurveyStack"
-        component={SurveyStack}
-        options={() => createTabOptions('Survey', HomeIcon)}
+        name="GalleryStack"
+        component={GalleryStack}
+        options={() => createTabOptions('Gallery', GalleryIcon)}
       /> */}
+      <Tab.Screen
+        name="CameraStack"
+        component={CameraStack}
+        options={() => createTabOptions('Camera', PhotoCameraIcon)}
+      />
     </Tab.Navigator>
   );
 };
