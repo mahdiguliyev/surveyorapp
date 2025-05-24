@@ -8,7 +8,14 @@ import Animated, {
 } from 'react-native-reanimated';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 
-const hiddenTabRoutes = ['CameraStack', 'Camera', 'PhotoEdit', 'Contractors'];
+const hiddenTabRoutes = [
+  'CameraStack',
+  'Camera',
+  'PhotoEdit',
+  'Contractors',
+  'Projects',
+];
+
 const getTabVisibility = state => {
   const route = state.routes[state.index];
   const nestedRouteName = getFocusedRouteNameFromRoute(route) ?? route.name;

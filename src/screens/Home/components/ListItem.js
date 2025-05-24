@@ -38,7 +38,7 @@ const ListItem = memo(({item, headers}) => {
           </AppText>
           <AppText variant="medium" fontSize={15} color="black">
             <AppText color="#000" fontSize={15} style={styles.not_see}>
-              {item.contractor}
+              {item.name}
             </AppText>
           </AppText>
         </View>

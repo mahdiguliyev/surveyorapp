@@ -58,7 +58,7 @@ const Header = () => {
         </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={() => Alert.alert('Projects')}>
+          onPress={() => navigation.navigate('Projects')}>
           <ProjectsIcon />
         </TouchableOpacity>
         <TouchableOpacity

@@ -23,29 +23,29 @@ const window = Dimensions.get('window');
 const headers = [
   {key: 'no', label: 'No'},
   {key: 'date', label: 'Tarix'},
-  {key: 'name', label: 'Podratçı adı'},
+  {key: 'name', label: 'Layihə adı'},
 ];
 
 const data = [
-  {no: 'H-AK-001', date: '01.05.2025', name: 'Podratçı-1'},
-  {no: 'H-AK-002', date: '07.05.2025', name: 'Podratçı-2'},
-  {no: 'H-AK-003', date: '10.05.2025', name: 'Podratçı-3'},
-  {no: 'H-AK-004', date: '15.05.2025', name: 'Podratçı-4'},
-  {no: 'H-AK-005', date: '15.05.2025', name: 'Podratçı-5'},
-  {no: 'H-AK-006', date: '15.05.2025', name: 'Podratçı-6'},
-  {no: 'H-AK-007', date: '15.05.2025', name: 'Podratçı-7'},
-  {no: 'H-AK-008', date: '15.05.2025', name: 'Podratçı-8'},
-  {no: 'H-AK-009', date: '15.05.2025', name: 'Podratçı-9'},
-  {no: 'H-AK-0010', date: '15.05.2025', name: 'Podratçı-10'},
+  {no: 'H-AK-001', date: '01.05.2025', name: 'Layihə-1'},
+  {no: 'H-AK-002', date: '07.05.2025', name: 'Layihə-2'},
+  {no: 'H-AK-003', date: '10.05.2025', name: 'Layihə-3'},
+  {no: 'H-AK-004', date: '15.05.2025', name: 'Layihə-4'},
+  {no: 'H-AK-005', date: '15.05.2025', name: 'Layihə-5'},
+  {no: 'H-AK-006', date: '15.05.2025', name: 'Layihə-6'},
+  {no: 'H-AK-007', date: '15.05.2025', name: 'Layihə-7'},
+  {no: 'H-AK-008', date: '15.05.2025', name: 'Layihə-8'},
+  {no: 'H-AK-009', date: '15.05.2025', name: 'Layihə-9'},
+  {no: 'H-AK-0010', date: '15.05.2025', name: 'Layihə-10'},
 ];
 
 const data2 = [
-  {no: 'H-AK-0011', date: '01.05.2025', name: 'Podratçı-11'},
-  {no: 'H-AK-0012', date: '07.05.2025', name: 'Podratçı-12'},
-  {no: 'H-AK-0013', date: '10.05.2025', name: 'Podratçı-13'},
-  {no: 'H-AK-0014', date: '15.05.2025', name: 'Podratçı-14'},
-  {no: 'H-AK-0015', date: '15.05.2025', name: 'Podratçı-15'},
-  {no: 'H-AK-0016', date: '15.05.2025', name: 'Podratçı-16'},
+  {no: 'H-AK-0011', date: '01.05.2025', name: 'Layihə-11'},
+  {no: 'H-AK-0012', date: '07.05.2025', name: 'Layihə-12'},
+  {no: 'H-AK-0013', date: '10.05.2025', name: 'Layihə-13'},
+  {no: 'H-AK-0014', date: '15.05.2025', name: 'Layihə-14'},
+  {no: 'H-AK-0015', date: '15.05.2025', name: 'Layihə-15'},
+  {no: 'H-AK-0016', date: '15.05.2025', name: 'Layihə-16'},
 ];
 
 const SectionTitle = ({children}) => (
@@ -58,9 +58,9 @@ const SectionTitle = ({children}) => (
   </AppText>
 );
 
-const ContractorsScreen = ({navigation, route}) => {
+const ProjectsScreen = ({navigation, route}) => {
   //const {type, mainTitle} = route.params;
-  const [contractors, setContractors] = useState([]);
+  const [projects, setProjects] = useState([]);
   const [pagingLoading, setPagingLoading] = useState(false);
   const [buttonPositionStatus, setButtonPositionStatus] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -79,26 +79,26 @@ const ContractorsScreen = ({navigation, route}) => {
   };
 
   useEffect(() => {
-    const getContractors = async () => {
+    const getProjects = async () => {
       currentPage.current = 1;
 
       if (data.length + data2.length > 10) {
         totalPages.current = 2;
       }
 
-      setContractors(data);
+      setProjects(data);
     };
-    getContractors();
+    getProjects();
   }, []);
 
-  const getMoreContractors = () => {
+  const getMoreProjects = () => {
     if (pagingLoading || currentPage.current >= totalPages.current) return;
 
     setPagingLoading(true);
 
     setTimeout(() => {
       const nextPage = currentPage.current + 1;
-      setContractors(prev => [...prev, ...data2]);
+      setProjects(prev => [...prev, ...data2]);
       currentPage.current = nextPage;
       setPagingLoading(false);
     }, 2000); // wait for 2 seconds
@@ -127,13 +127,11 @@ const ContractorsScreen = ({navigation, route}) => {
           <ArrowIcon color="#000" />
         </Pressable>
         <AppText variant="medium" color="black" fontSize={17}>
-          Podratçılar
+          Layihələr
         </AppText>
         <View style={styles.item_header_2}></View>
       </View>
-      {contractors.length > 0 && (
-        <SectionTitle>Podratçıların siyahısı</SectionTitle>
-      )}
+      {projects.length > 0 && <SectionTitle>Layihələrin siyahısı</SectionTitle>}
       <View
         style={{
           flex: 1,
@@ -141,13 +139,13 @@ const ContractorsScreen = ({navigation, route}) => {
           alignItems: 'center',
           paddingHorizontal: horizontalScale(15),
         }}>
-        {contractors.length > 0 ? (
+        {projects.length > 0 ? (
           <FlatList
-            data={contractors}
+            data={projects}
             keyExtractor={item => item.no}
             renderItem={({item}) => <ListItem item={item} headers={headers} />}
             contentContainerStyle={styles.contentContainer}
-            onEndReached={getMoreContractors}
+            onEndReached={getMoreProjects}
             onEndReachedThreshold={0.1}
             ListFooterComponent={() =>
               pagingLoading ? (
@@ -177,7 +175,7 @@ const ContractorsScreen = ({navigation, route}) => {
   );
 };
 
-export default ContractorsScreen;
+export default ProjectsScreen;
 
 const styles = StyleSheet.create({
   container: {
