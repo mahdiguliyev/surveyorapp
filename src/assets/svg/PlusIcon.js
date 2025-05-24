@@ -11,7 +11,7 @@ const PlusIcon = ({color}) => {
       <G clip-path="url(#clip0_629_1289)">
         <Path
           d="M1.6665 9.99999H9.99984M9.99984 9.99999H18.3332M9.99984 9.99999V1.66666M9.99984 9.99999V18.3333"
-          stroke="black"
+          stroke={color || 'white'}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"

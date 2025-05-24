@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Text, View, Pressable, StyleSheet} from 'react-native';
+import {Text, View, Pressable, StyleSheet, Platform} from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -8,7 +8,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 
-const hiddenTabRoutes = ['CameraStack', 'Camera', 'PhotoEdit'];
+const hiddenTabRoutes = ['CameraStack', 'Camera', 'PhotoEdit', 'Contractors'];
 const getTabVisibility = state => {
   const route = state.routes[state.index];
   const nestedRouteName = getFocusedRouteNameFromRoute(route) ?? route.name;
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 4,
     paddingTop: 15,
-    paddingBottom: 27,
+    paddingBottom: Platform.OS === 'ios' ? 27 : 10,
     paddingHorizontal: 18,
     bottom: 0,
     position: 'absolute',

@@ -53,13 +53,13 @@ const Header = () => {
       <View style={styles.header_button}>
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={() => Alert.alert('Projects')}>
-          <ProjectsIcon />
+          onPress={() => navigation.navigate('Contractors')}>
+          <ContractorIcon />
         </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={() => Alert.alert('Contractors')}>
-          <ContractorIcon />
+          onPress={() => Alert.alert('Projects')}>
+          <ProjectsIcon />
         </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={0.7}
