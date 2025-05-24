@@ -26,7 +26,7 @@ export default function LoginScreen({navigation}) {
     const {userName, password} = values;
     if (userName === 'test' && password === 'test123') {
       setLoading(false);
-      login({username: 'mahdiguliyev', role: 'surveyor'});
+      login({username: 'mahdiguliyev', role: 'manager'});
       //navigation.navigate('Bottom');
     } else {
       setLoading(false);
@@ -37,7 +37,7 @@ export default function LoginScreen({navigation}) {
   };
 
   const handleForgotPassword = () => {
-    navigation.navigate('ForgotPassword');
+    //navigation.navigate('ForgotPassword');
   };
 
   const handleRegister = () => {

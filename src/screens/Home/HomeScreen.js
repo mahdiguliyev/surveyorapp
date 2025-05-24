@@ -1,4 +1,10 @@
-import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {useCallback, useRef, useState} from 'react';
 
 import {COLORS} from '@components/styles/colors';
@@ -32,6 +38,11 @@ export default function HomeScreen({navigation}) {
 
   return (
     <HomeThemeProvider>
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle="dark-content"
+      />
       <View style={styles.container}>
         <View style={styles.container}>
           <View style={[styles.home_card_section, {paddingTop: insets.top}]}>

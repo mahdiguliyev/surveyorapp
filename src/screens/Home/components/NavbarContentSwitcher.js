@@ -8,6 +8,7 @@ import Animated, {
 import AppText from '../../../components/AppText';
 import Table from '../../../components/general/ReportList';
 import ReportList from '../../../components/general/ReportList';
+import {verticalScale} from '../../../common/Metrics';
 
 const headers_1 = [
   {key: 'no', label: 'No'},
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     width: '100%',
-    minHeight: 300,
+    minHeight: verticalScale(280),
   },
   slide: {
     width: '100%',

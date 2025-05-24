@@ -7,7 +7,7 @@ import Animated, {
 import {COLORS} from '../../../components/styles/colors';
 import {verticalScale} from '../../../common/Metrics';
 
-const {width} = Dimensions.get('screen');
+const {width, height} = Dimensions.get('screen');
 
 const Pagination = ({data, scrollX, index, onDotPress}) => {
   return (
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginBottom:
-      Platform.OS === 'ios' ? verticalScale(110) : verticalScale(130),
+      Platform.OS === 'ios' ? verticalScale(110) : verticalScale(100),
   },
   dot: {
     height: 8,

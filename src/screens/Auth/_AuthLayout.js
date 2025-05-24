@@ -23,7 +23,7 @@ const AuthLayout = ({
   const insets = useSafeAreaInsets();
   return (
     <View style={styles.login_main_container}>
-      <View style={styles.login_header_bage}>{/* <AsbLogoIcon /> */}</View>
+      <View style={styles.login_header_bage}></View>
       <View style={[styles.login_header, {marginTop: insets.top}]}>
         {backButton && (
           <Pressable style={styles.login_header_back} onPress={goBackHandler}>
