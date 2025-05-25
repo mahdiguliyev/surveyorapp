@@ -55,5 +55,18 @@
 	<string>$(PRODUCT_NAME) needs access to your Camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs access to Photos.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Konum servislerine her zaman erişim, daha iyi hizmet sunabilmemiz için gereklidir.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Bu uygulama, haritada konumunuzu gösterebilmek için konum erişimi talep ediyor.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SF-Pro-Rounded-Bold.otf</string>
+		<string>SF-Pro-Rounded-Heavy.otf</string>
+		<string>SF-Pro-Rounded-Light.otf</string>
+		<string>SF-Pro-Rounded-Medium.otf</string>
+		<string>SF-Pro-Rounded-Regular.otf</string>
+		<string>SF-Pro-Rounded-Semibold.otf</string>
+	</array>
 </dict>
 </plist>

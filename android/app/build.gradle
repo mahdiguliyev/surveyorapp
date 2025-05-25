@@ -72,6 +72,8 @@ def enableProguardInReleaseBuilds = true
  */
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
+def map_api_key ="AIzaSyAZ9Up5GrE4ANKK5J8UZVgdjFVd6F0oO-g"
+
 android {
     ndkVersion rootProject.ext.ndkVersion
     //buildToolsVersion rootProject.ext.buildToolsVersion
@@ -145,6 +147,7 @@ android {
     buildTypes {
         debug {
             //signingConfig signingConfigs.debug
+            manifestPlaceholders = [map_api_key: map_api_key]
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -153,6 +156,7 @@ android {
             //signingConfig signingConfigs.debug
             shrinkResources enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            manifestPlaceholders = [map_api_key: map_api_key]
         }
     }
 }
@@ -172,4 +176,5 @@ dependencies {
     }
 
     implementation project(':react-native-fs')
+    implementation project(':react-native-maps')
 }
