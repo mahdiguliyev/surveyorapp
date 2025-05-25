@@ -78,9 +78,9 @@ const CustomTabBar = ({state, descriptors, navigation}) => {
             <AnimatedIconWrapper style={[animatedColorStyle]}>
               {Icon && Icon({focused: isFocused})}
             </AnimatedIconWrapper>
-            <AnimatedText style={[styles.main_text, animatedColorStyle]}>
+            {/* <AnimatedText style={[styles.main_text, animatedColorStyle]}>
               {label}
-            </AnimatedText>
+            </AnimatedText> */}
           </Pressable>
         );
       })}
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 4,
     paddingTop: 15,
-    paddingBottom: Platform.OS === 'ios' ? 27 : 10,
+    paddingBottom: Platform.OS === 'ios' ? 35 : 18,
     paddingHorizontal: 18,
     bottom: 0,
     position: 'absolute',

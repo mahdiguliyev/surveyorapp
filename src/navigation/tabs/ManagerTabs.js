@@ -4,10 +4,12 @@ import HomeStack from '../stack/HomeStack';
 import CustomTabBar from '../CustomTabBar';
 import HomeIcon from '@assets/svg/navigation/HomeIcon';
 import PhotoCameraIcon from '@assets/svg/navigation/PhotoCameraIcon';
+import ReportsIcon from '@assets/svg/navigation/ReportsIcon';
 import GalleryIcon from '@assets/svg/navigation/GalleryIcon';
 import CameraStack from '../stack/CameraStack';
 import GalleryStack from '../stack/GalleryStack';
 import {COLORS} from '../../components/styles/colors';
+import ReportsStack from '../stack/ReportsStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -40,6 +42,11 @@ const ManagerTabs = () => {
         name="CameraStack"
         component={CameraStack}
         options={() => createTabOptions('Camera', PhotoCameraIcon)}
+      />
+      <Tab.Screen
+        name="ReportsStack"
+        component={ReportsStack}
+        options={() => createTabOptions('Reports', ReportsIcon)}
       />
     </Tab.Navigator>
   );
