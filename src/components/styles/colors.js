@@ -3,7 +3,7 @@ export const COLORS = {
   black: '#000',
   black300: '#393839',
   blackShadow: '#222',
-  primary: '#c158dd',
+  primary: '#74039e',
   currencyAZN: '#6fb1f5',
   currencyUSD: 'green',
   currencyEUR: 'orange',

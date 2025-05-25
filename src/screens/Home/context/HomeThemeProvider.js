@@ -4,8 +4,8 @@ const HomeThemeContext = createContext();
 
 export const HomeThemeProvider = ({children}) => {
   const [colors, setColors] = useState({
-    colorFrom: '#b41cdd',
-    colorTo: '#c158dd',
+    colorFrom: '#b569d1',
+    colorTo: '#74039e',
   });
 
   const changeToBlue = () =>
