@@ -49,8 +49,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom:
-      Platform.OS === 'ios' ? verticalScale(110) : verticalScale(100),
+    marginTop: verticalScale(20),
   },
   dot: {
     height: 8,

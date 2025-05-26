@@ -1,5 +1,11 @@
 import {useRef, useState} from 'react';
-import {View, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import AppText from '@components/AppText';
 import Animated, {
   useSharedValue,
@@ -7,6 +13,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import Pagination from './Pagination';
 import UnusedPhotosItem from './UnusedPhotosItem';
+import {verticalScale} from '../../../common/Metrics';
 
 const test_data = [
   {
@@ -51,6 +58,8 @@ const test_data = [
   },
 ];
 
+const {width, height} = Dimensions.get('window');
+
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 export default function UnusedPhotos() {
@@ -94,28 +103,29 @@ export default function UnusedPhotos() {
           </AppText>
         </TouchableOpacity>
       </View>
+      <View>
+        <AnimatedFlatList
+          ref={flatListRef}
+          data={test_data}
+          renderItem={({item}) => <UnusedPhotosItem item={item} />}
+          horizontal
+          pagingEnabled
+          snapToAlignment="center"
+          showsHorizontalScrollIndicator={false}
+          onScroll={onScroll}
+          scrollEventThrottle={16}
+          onViewableItemsChanged={handleOnViewableItemsChanged}
+          viewabilityConfig={viewabilityConfig}
+          keyExtractor={(_, i) => i.toString()}
+        />
 
-      <AnimatedFlatList
-        ref={flatListRef}
-        data={test_data}
-        renderItem={({item}) => <UnusedPhotosItem item={item} />}
-        horizontal
-        pagingEnabled
-        snapToAlignment="center"
-        showsHorizontalScrollIndicator={false}
-        onScroll={onScroll}
-        scrollEventThrottle={16}
-        onViewableItemsChanged={handleOnViewableItemsChanged}
-        viewabilityConfig={viewabilityConfig}
-        keyExtractor={(_, i) => i.toString()}
-      />
-
-      <Pagination
-        data={test_data}
-        scrollX={scrollX}
-        index={index}
-        onDotPress={handleDotPress}
-      />
+        <Pagination
+          data={test_data}
+          scrollX={scrollX}
+          index={index}
+          onDotPress={handleDotPress}
+        />
+      </View>
     </View>
   );
 }

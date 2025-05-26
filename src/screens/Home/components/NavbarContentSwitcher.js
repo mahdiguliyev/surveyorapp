@@ -5,8 +5,6 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
 } from 'react-native-reanimated';
-import AppText from '../../../components/AppText';
-import Table from '../../../components/general/ReportList';
 import ReportList from '../../../components/general/ReportList';
 import {verticalScale} from '../../../common/Metrics';
 
@@ -29,12 +27,11 @@ const data_1 = [
   {no: 'H-AK-004', date: '15.05.2025', user: 'Yalchin Talibov'},
 ];
 
-const {width} = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
 const NavbarContentSwitcher = ({activeTab}) => {
   const cardTranslateX = useSharedValue(0);
   const accountsTranslateX = useSharedValue(width);
-
   useEffect(() => {
     if (activeTab === 0) {
       cardTranslateX.value = withTiming(0, {duration: 300});
@@ -70,7 +67,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     width: '100%',
-    minHeight: verticalScale(280),
+    height: height >= 750 ? verticalScale(280) : verticalScale(250),
   },
   slide: {
     width: '100%',

@@ -305,7 +305,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   contentContainer: {
-    paddingBottom: Platform.OS === 'ios' ? 80 : 50,
+    paddingBottom: Platform.OS === 'ios' ? 80 : 60,
   },
   item_header: {
     alignItems: 'center',
