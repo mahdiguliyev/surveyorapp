@@ -1,5 +1,7 @@
-import {Platform, StyleSheet} from 'react-native';
+import {Dimensions, Platform, StyleSheet} from 'react-native';
 import {FONTS} from '@components/styles/fonts';
+
+const {width} = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
@@ -45,15 +47,22 @@ export default StyleSheet.create({
   },
 
   map_filter_group: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     position: 'absolute',
-    top: -55,
+    top: -100,
     width: '100%',
     paddingHorizontal: 20,
   },
   map_filter_group_button: {
     display: 'flex',
     flexDirection: 'row',
+    gap: 10,
+    justifyContent: 'flex-start',
+  },
+  map_filter_group_button_2: {
+    display: 'flex',
+    flexDirection: 'row',
+    top: 10,
     gap: 10,
     justifyContent: 'flex-start',
   },
@@ -132,7 +141,7 @@ export default StyleSheet.create({
     height: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F3F7FB',
+    backgroundColor: '#f9f3fb',
     borderRadius: 10,
   },
   map_item_card_text_container: {
@@ -232,5 +241,16 @@ export default StyleSheet.create({
   },
   mt20: {
     marginTop: 20,
+  },
+  image_container: {
+    width: '100%',
+    aspectRatio: 1.9,
+    overflow: 'hidden',
+    marginBottom: 20,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 20,
   },
 });

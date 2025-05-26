@@ -7,6 +7,7 @@ import {
   Platform,
   Linking,
   Alert,
+  Image,
 } from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -24,6 +25,7 @@ import AtmMapIcon from '@assets/svg/AtmMapIcon';
 import BankMapIcon from '@assets/svg/BankMapIcon';
 import CarsIcon from '@assets/svg/CarsIcon';
 import ArrowBack from '@assets/svg/ArrowBack';
+import {horizontalScale} from '../../../common/Metrics';
 
 const MapDetail = ({detail, userLocation}) => {
   const [duration, setDuration] = useState(null);
@@ -96,15 +98,15 @@ const MapDetail = ({detail, userLocation}) => {
         </View>
         <View style={styles.map_detail_header_text_container}>
           <Text style={styles.map_detail_header_text_title}>
-            {detail.title}
+            {detail.project_name}
           </Text>
           <Text style={styles.map_detail_header_text_content}>
-            {detail.content}
+            {detail.sub_project_name}
           </Text>
         </View>
       </View>
 
-      <View>
+      {/* <View>
         <TouchableOpacity
           style={styles.map_detail_button}
           activeOpacity={0.7}
@@ -120,21 +122,56 @@ const MapDetail = ({detail, userLocation}) => {
           </View>
           <ArrowBack />
         </TouchableOpacity>
+      </View> */}
+
+      <View style={styles.image_container}>
+        <Image
+          source={detail.imageUrl}
+          style={styles.image}
+          resizeMode="cover"
+        />
       </View>
 
       <View style={styles.map_detail_card}>
-        <Text style={styles.map_detail_card_label}>İş vaxtı</Text>
-        <Text style={styles.map_detail_card_text}>{detail.hour}</Text>
-      </View>
-
-      <View style={styles.map_detail_card}>
-        <View>
-          <Text style={styles.map_detail_card_label}>Telefon</Text>
-          <Text style={styles.map_detail_card_text}>{detail.phone}</Text>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <View>
+            <Text style={styles.map_detail_card_label}>Surveyor</Text>
+            <Text style={styles.map_detail_card_text}>{detail.surveyor}</Text>
+          </View>
+          <View style={{marginRight: horizontalScale(15)}}>
+            <Text style={styles.map_detail_card_label}>Tarix</Text>
+            <Text style={styles.map_detail_card_text}>{detail.date}</Text>
+          </View>
         </View>
-        <View style={styles.mt20}>
-          <Text style={styles.map_detail_card_label}>Ünvan</Text>
-          <Text style={styles.map_detail_card_text}>{detail.address}</Text>
+
+        <View
+          style={[
+            styles.mt20,
+            {flexDirection: 'row', justifyContent: 'space-between'},
+          ]}>
+          <View>
+            <Text style={styles.map_detail_card_label}>Hesabat nömrəsi</Text>
+            <Text style={styles.map_detail_card_text}>
+              {detail.report_number}
+            </Text>
+          </View>
+          <View style={{marginRight: horizontalScale(15)}}>
+            <Text style={styles.map_detail_card_label}>Status</Text>
+            <Text style={styles.map_detail_card_text}>{detail.status}</Text>
+          </View>
+        </View>
+
+        <View
+          style={[
+            styles.mt20,
+            {flexDirection: 'row', justifyContent: 'space-between'},
+          ]}>
+          <View>
+            <Text style={styles.map_detail_card_label}>Kordinat</Text>
+            <Text style={styles.map_detail_card_text}>
+              {detail.latitude}-{detail.longitude}
+            </Text>
+          </View>
         </View>
       </View>
     </Animated.View>

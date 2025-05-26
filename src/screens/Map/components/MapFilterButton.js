@@ -1,13 +1,15 @@
 import {View, Text, TouchableOpacity} from 'react-native';
 import styles from '../style.map';
-import AtmMapIcon from '@assets/svg/AtmMapIcon';
-import BankMapIcon from '@assets/svg/BankMapIcon';
+import SuccessTickIcon from '@assets/svg/SuccessTickIcon';
+import FailedTickIcon from '@assets/svg/FailedTickIcon';
+import ResetIcon from '@assets/svg/ResetIcon';
 import LocationIcon from '@assets/svg/LocationIcon';
 import Animated, {
   Extrapolation,
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import {COLORS} from '../../../components/styles/colors';
 
 const MapFilterButton = ({
   onFilter,
@@ -31,23 +33,34 @@ const MapFilterButton = ({
       <View style={styles.map_filter_group_button}>
         <TouchableOpacity
           style={styles.map_filter_group_button_item}
-          onPress={() => onFilter(1)}>
+          onPress={() => onFilter(3)}>
           <View style={styles.map_filter_group_button_item_icon}>
-            <BankMapIcon />
+            <ResetIcon />
           </View>
-          <Text style={styles.map_filter_group_button_item_text}>
-            Filiallar
-          </Text>
+          <Text style={styles.map_filter_group_button_item_text}>Bütün</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.map_filter_group_button_item}
-          onPress={() => onFilter(0)}>
+          onPress={() => onFilter(1)}>
           <View style={styles.map_filter_group_button_item_icon}>
-            <AtmMapIcon />
+            <SuccessTickIcon color={COLORS.primary} />
           </View>
           <Text style={styles.map_filter_group_button_item_text}>
-            Bankomatlar
+            İstifadə olunmuş
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.map_filter_group_button_2}>
+        <TouchableOpacity
+          style={styles.map_filter_group_button_item}
+          onPress={() => onFilter(0)}>
+          <View style={styles.map_filter_group_button_item_icon}>
+            <FailedTickIcon />
+          </View>
+          <Text style={styles.map_filter_group_button_item_text}>
+            İstifadə olunmamış
           </Text>
         </TouchableOpacity>
       </View>

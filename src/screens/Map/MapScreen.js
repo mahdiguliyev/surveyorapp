@@ -66,7 +66,7 @@ const MapScreen = () => {
             }}
             title={branch.title}
             onPress={() => handleBranchPress(branch)}
-            pinColor={COLORS.primaryBlue}>
+            pinColor={COLORS.primary}>
             <MarkerMapIcon width={36} height={36} />
           </Marker>
         ))}

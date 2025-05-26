@@ -72,7 +72,9 @@ def enableProguardInReleaseBuilds = true
  */
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
-def map_api_key ="AIzaSyAZ9Up5GrE4ANKK5J8UZVgdjFVd6F0oO-g"
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def map_api_key = properties.getProperty('MAP_API_KEY')
 
 android {
     ndkVersion rootProject.ext.ndkVersion

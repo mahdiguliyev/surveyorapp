@@ -11,7 +11,7 @@ import Geolocation from '@react-native-community/geolocation';
 import {useNavigation} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useSharedValue} from 'react-native-reanimated';
-import {COORDINATES} from '../../../constants/coordinates';
+import {PROJECTS} from '../../../constants/coordinates';
 
 const INITIAL_REGION = {
   latitude: 40.39856,
@@ -28,7 +28,7 @@ const useMapController = MAX_TRANSLATE_Y => {
   const translateY = useSharedValue(MAX_TRANSLATE_Y);
 
   const [currentRegion, setCurrentRegion] = useState(INITIAL_REGION);
-  const [filteredDataSource, setFilteredDataSource] = useState(COORDINATES);
+  const [filteredDataSource, setFilteredDataSource] = useState(PROJECTS);
   const [selectedBranch, setSelectedBranch] = useState(null);
   const [activeDetail, setActiveDetail] = useState(false);
   const [isFilterButtonVisible, setFilterButtonVisible] = useState(true);
@@ -98,8 +98,12 @@ const useMapController = MAX_TRANSLATE_Y => {
 
   // Filtreleme
   const handleFilterPress = type => {
-    const filtered = COORDINATES.filter(item => item.type === type);
-    setFilteredDataSource(filtered);
+    if (type === 3) {
+      setFilteredDataSource(PROJECTS);
+    } else {
+      const filtered = PROJECTS.filter(item => item.type === type);
+      setFilteredDataSource(filtered);
+    }
   };
 
   // Harita üzerindeki branch'e tıklama
@@ -125,7 +129,7 @@ const useMapController = MAX_TRANSLATE_Y => {
       setSelectedBranch(null);
       setActiveDetail(false);
       setFilterButtonVisible(true);
-      setFilteredDataSource(COORDINATES);
+      setFilteredDataSource(PROJECTS);
       mapRef.current?.animateToRegion(INITIAL_REGION, 1000);
       sheetRef.current?.scrollTo(MAX_TRANSLATE_Y);
     } /* else {

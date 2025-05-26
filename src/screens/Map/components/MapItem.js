@@ -6,8 +6,8 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import AtmMapIcon from '@assets/svg/AtmMapIcon';
-import BankMapIcon from '@assets/svg/BankMapIcon';
+import SuccessTickIcon from '@assets/svg/SuccessTickIcon';
+import FailedTickIcon from '@assets/svg/FailedTickIcon';
 import SearchIcon from '@assets/svg/SearchIcon';
 import styles from '../style.map';
 import MapDetail from './MapDetail';
@@ -15,15 +15,19 @@ import MapDetail from './MapDetail';
 const Item = ({branch, onPress}) => {
   return (
     <TouchableOpacity
-      activeOpacity={0.6}
+      activeOpacity={0.7}
       style={styles.map_item_card}
       onPress={onPress}>
       <View style={styles.map_item_card_icon}>
-        {branch.type === 1 ? <BankMapIcon /> : <AtmMapIcon />}
+        {branch.type === 1 ? <SuccessTickIcon /> : <FailedTickIcon />}
       </View>
       <View style={styles.map_item_card_text_container}>
-        <Text style={styles.map_item_card_text_title}>{branch.title}</Text>
-        <Text style={styles.map_item_card_text_content}>{branch.content}</Text>
+        <Text style={styles.map_item_card_text_title}>
+          {branch.project_name}
+        </Text>
+        <Text style={styles.map_item_card_text_content}>
+          {branch.sub_project_name}
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -58,9 +62,9 @@ const MapItem = ({
         const upperText = text.toUpperCase();
         const newData = originalData.filter(
           item =>
-            item.title?.toUpperCase().includes(upperText) ||
-            item.content?.toUpperCase().includes(upperText) ||
-            item.address?.toUpperCase().includes(upperText),
+            item.project_name?.toUpperCase().includes(upperText) ||
+            item.sub_project_name?.toUpperCase().includes(upperText) ||
+            item.report_number?.toUpperCase().includes(upperText),
         );
         setFilteredDataSource(newData);
       }
@@ -68,7 +72,7 @@ const MapItem = ({
     }, 300);
   };
   const handleFocus = () => {
-    borderColor.value = withTiming('#0B5AAE', {duration: 200});
+    borderColor.value = withTiming('#74039e', {duration: 200});
   };
 
   const handleBlur = () => {
