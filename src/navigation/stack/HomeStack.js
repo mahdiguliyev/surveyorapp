@@ -2,6 +2,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../../screens/Home/HomeScreen';
 import ContractorsScreen from '../../screens/Home/ContractorsScreen';
 import ProjectsScreen from '../../screens/Home/ProjectsScreen';
+import AddProjectScreen from '../../screens/Home/AddProjectScreen';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,15 @@ const HomeStack = () => {
       <Stack.Screen
         name="Projects"
         component={ProjectsScreen}
+        options={{
+          headerTitleAlign: 'center',
+          gestureEnabled: false,
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="AddProject"
+        component={AddProjectScreen}
         options={{
           headerTitleAlign: 'center',
           gestureEnabled: false,

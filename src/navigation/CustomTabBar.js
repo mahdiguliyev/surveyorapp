@@ -14,6 +14,7 @@ const hiddenTabRoutes = [
   'PhotoEdit',
   'Contractors',
   'Projects',
+  'AddProject',
 ];
 
 const getTabVisibility = state => {

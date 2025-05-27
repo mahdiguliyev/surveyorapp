@@ -21,10 +21,8 @@ import {
 import LinearGradient from '@components/LinearGradient';
 
 import styles from '../style.map';
-import AtmMapIcon from '@assets/svg/AtmMapIcon';
-import BankMapIcon from '@assets/svg/BankMapIcon';
-import CarsIcon from '@assets/svg/CarsIcon';
-import ArrowBack from '@assets/svg/ArrowBack';
+import SuccessTickIcon from '@assets/svg/SuccessTickIcon';
+import FailedTickIcon from '@assets/svg/FailedTickIcon';
 import {horizontalScale} from '../../../common/Metrics';
 
 const MapDetail = ({detail, userLocation}) => {
@@ -94,7 +92,7 @@ const MapDetail = ({detail, userLocation}) => {
     <Animated.View style={[animatedStyle]}>
       <View style={styles.map_detail_header}>
         <View style={styles.map_detail_header_icon}>
-          {detail.type === 1 ? <BankMapIcon /> : <AtmMapIcon />}
+          {detail.type === 1 ? <SuccessTickIcon /> : <FailedTickIcon />}
         </View>
         <View style={styles.map_detail_header_text_container}>
           <Text style={styles.map_detail_header_text_title}>

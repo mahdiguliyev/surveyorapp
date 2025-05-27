@@ -105,8 +105,7 @@ const ProjectsScreen = ({navigation, route}) => {
   };
 
   const toggleModal = () => {
-    alert('Modal açılır');
-    setModalVisible(prev => !prev);
+    navigation.navigate('AddProject');
   };
 
   return (
