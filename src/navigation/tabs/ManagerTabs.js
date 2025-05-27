@@ -6,12 +6,14 @@ import HomeIcon from '@assets/svg/navigation/HomeIcon';
 import PhotoCameraIcon from '@assets/svg/navigation/PhotoCameraIcon';
 import ReportsIcon from '@assets/svg/navigation/ReportsIcon';
 import MapIcon from '@assets/svg/navigation/MapIcon';
+import ProfileIcon from '@assets/svg/navigation/ProfileIcon';
 import GalleryIcon from '@assets/svg/navigation/GalleryIcon';
 import CameraStack from '../stack/CameraStack';
 import GalleryStack from '../stack/GalleryStack';
 import {COLORS} from '../../components/styles/colors';
 import ReportsStack from '../stack/ReportsStack';
 import MapStack from '../stack/MapStack';
+import ProfileStack from '../stack/ProfileStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -54,6 +56,11 @@ const ManagerTabs = () => {
         name="ReportsStack"
         component={ReportsStack}
         options={() => createTabOptions('Reports', ReportsIcon)}
+      />
+      <Tab.Screen
+        name="ProfileStack"
+        component={ProfileStack}
+        options={() => createTabOptions('Profile', ProfileIcon)}
       />
     </Tab.Navigator>
   );

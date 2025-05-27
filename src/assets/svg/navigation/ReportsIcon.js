@@ -4,7 +4,7 @@ const ReportsIcon = ({color}) => {
   return (
     <Svg
       fill={color ? color : '#C2C2C2'}
-      width="25"
+      width="24"
       height="24"
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"

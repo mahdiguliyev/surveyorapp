@@ -11,13 +11,13 @@ export default function AuthNavigation({navigation}) {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Splash">
-      <Stack.Screen
+      initialRouteName="Login">
+      {/*       <Stack.Screen
         name="Splash"
         component={SplashScreen}
         // Hiding header for Splash Screen
         options={{headerShown: false, gestureEnabled: false}}
-      />
+      /> */}
       <Stack.Screen
         name="Login"
         component={LoginScreen}
