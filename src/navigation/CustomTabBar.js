@@ -15,6 +15,7 @@ const hiddenTabRoutes = [
   'Contractors',
   'Projects',
   'AddProject',
+  'AddContractor',
 ];
 
 const getTabVisibility = state => {

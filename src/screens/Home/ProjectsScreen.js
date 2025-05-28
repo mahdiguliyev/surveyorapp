@@ -59,11 +59,8 @@ const SectionTitle = ({children}) => (
 );
 
 const ProjectsScreen = ({navigation, route}) => {
-  //const {type, mainTitle} = route.params;
   const [projects, setProjects] = useState([]);
   const [pagingLoading, setPagingLoading] = useState(false);
-  const [buttonPositionStatus, setButtonPositionStatus] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
 
   const currentPage = useRef(1);
   const totalPages = useRef(1);
@@ -104,7 +101,7 @@ const ProjectsScreen = ({navigation, route}) => {
     }, 2000); // wait for 2 seconds
   };
 
-  const toggleModal = () => {
+  const navigateAddNewProject = () => {
     navigation.navigate('AddProject');
   };
 
@@ -166,7 +163,9 @@ const ProjectsScreen = ({navigation, route}) => {
       </View>
       {/* <ListItem /> */}
       <View style={styles.add_button_container}>
-        <TouchableOpacity style={styles.add_button} onPress={toggleModal}>
+        <TouchableOpacity
+          style={styles.add_button}
+          onPress={navigateAddNewProject}>
           <PlusIcon />
         </TouchableOpacity>
       </View>

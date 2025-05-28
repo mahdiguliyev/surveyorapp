@@ -1,15 +1,8 @@
-import {
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {StatusBar, StyleSheet, View} from 'react-native';
 import {useCallback, useRef, useState} from 'react';
 
 import {COLORS} from '@components/styles/colors';
 import {HomeThemeProvider} from './context/HomeThemeProvider';
-import Table from '../../components/general/ReportList';
 import Header from '../../components/Header';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import LinearGradientHome from './components/LinearGradientHome';

@@ -11,125 +11,94 @@ import {
 import HeaderLayout from '@components/general/HeaderLayout';
 import AppText from '@components/AppText';
 import ArrowIcon from '@assets/svg/ArrowIcon';
-import ArrowCircle from '@assets/svg/ArrowCircle';
 import LinearGradient from '@components/LinearGradient';
 import {FONTS} from '../../components/styles/fonts';
-import PersonChoose from '../../components/PersonChoose';
 
-const dummy_contractors = [
-  {
-    id: 1,
-    name: 'Ugur Cebeci',
-  },
-  {
-    id: 2,
-    name: 'Yalcin Talibov',
-  },
-];
-const dummy_surveyors = [
-  {
-    id: 1,
-    name: 'Mahdi Guliyev',
-  },
-  {
-    id: 2,
-    name: 'Saleh Nabiyev',
-  },
-];
-
-export default function AddProjectScreen({navigation, route}) {
-  const [projectName, setProjectName] = useState('');
-  const [projectDescription, setProjectDescription] = useState('');
-  const [surveyors, setSurveyors] = useState([]);
-  const [contractors, setContractors] = useState([]);
-  const [selectedSurveyor, setSelectedSurveyor] = useState(null);
-  const [selectedContractor, setSelectedContractor] = useState(null);
+export default function AddContractorScreen({navigation, route}) {
+  const [companyName, setCompanyName] = useState('');
+  const [companyHead, setCompanyHead] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [inputErrors, setInputErrors] = useState({
-    projectNameError: '',
-    projectDescriptionError: '',
+    companyNameError: '',
+    companyHeadError: '',
+    emailError: '',
+    phoneNumberError: '',
   });
-  const [surveyorContractorError, setSurveyorContractorError] = useState('');
-
-  const [chooseContractor, setChooseContractor] = useState(false);
-  const [chooseSurveyor, setChooseSurveyor] = useState(false);
-
-  const handleChooseSurveyor = () => {
-    setChooseSurveyor(!chooseSurveyor);
-  };
-
-  const handleChooseContractor = () => {
-    setChooseContractor(!chooseContractor);
-  };
 
   const checkIsValid = async () => {
-    setProjectName('');
-    setProjectDescription('');
+    setCompanyName('');
+    setCompanyHead('');
 
-    Alert.alert('Uğurlu', 'Yeni layihə yaradıldı.');
+    Alert.alert('Uğurlu', 'Podratçı əlavə edildi.');
     navigation.goBack();
   };
-
-  const getSurveyors = async () => {
-    setSurveyors(dummy_surveyors);
-  };
-
-  const getContractors = async () => {
-    setContractors(dummy_contractors);
-  };
-
-  function validateSurveyorContractorInputs() {
-    return selectedContractor !== null && selectedSurveyor !== null;
-  }
 
   const handleSend = () => {
     let hasError = false;
 
-    if (projectName === '' || projectName === null) {
+    if (companyName === '' || companyName === null) {
       setInputErrors(prev => ({
         ...prev,
-        projectNameError: 'Layihə adı düzgün daxil edilməyib.',
+        companyNameError: 'Şirkət adı daxil edilməyib.',
       }));
       hasError = true;
     } else {
       setInputErrors(prev => ({
         ...prev,
-        projectNameError: '',
+        companyNameError: '',
       }));
     }
 
-    if (projectDescription === '' || projectDescription === null) {
+    if (companyHead === '' || companyHead === null) {
       setInputErrors(prev => ({
         ...prev,
-        projectDescriptionError: 'Layihənin təsviri düzgün daxil edilməyib.',
+        companyHeadError: 'Şirkət rəhbəri daxil edilməyib.',
       }));
       hasError = true;
     } else {
       setInputErrors(prev => ({
         ...prev,
-        projectDescriptionError: '',
+        companyHeadError: '',
       }));
     }
 
-    if (!validateSurveyorContractorInputs()) {
-      setSurveyorContractorError('Seçim edilməyib.');
+    if (email === '' || email === null) {
+      setInputErrors(prev => ({
+        ...prev,
+        emailError: 'E-mail daxil edilməyib.',
+      }));
       hasError = true;
     } else {
-      setSurveyorContractorError('');
+      setInputErrors(prev => ({
+        ...prev,
+        emailError: '',
+      }));
+    }
+
+    if (phoneNumber === '' || phoneNumber === null) {
+      setInputErrors(prev => ({
+        ...prev,
+        phoneNumberError: 'Mobil nömrə düzgün daxil edilməyib.',
+      }));
+      hasError = true;
+    } else {
+      setInputErrors(prev => ({
+        ...prev,
+        phoneNumberError: '',
+      }));
     }
 
     if (hasError) {
       return;
     }
 
-    setProjectName('');
-    setProjectDescription('');
+    setCompanyName('');
+    setCompanyHead('');
+    setEmail('');
+    setPhoneNumber('');
     checkIsValid();
   };
-
-  useEffect(() => {
-    getSurveyors();
-    getContractors();
-  }, []);
 
   const goBack = () => {
     navigation.goBack();
@@ -137,7 +106,7 @@ export default function AddProjectScreen({navigation, route}) {
 
   return (
     <HeaderLayout
-      mainTitle={'Yeni layihə əlavə et'}
+      mainTitle={'Yeni podratçı əlavə et'}
       scroll_padding={styles.scroll_padding}
       leftButton={
         <Pressable onPress={goBack}>
@@ -153,13 +122,13 @@ export default function AddProjectScreen({navigation, route}) {
               fontSize={13}
               ml={20}
               mb={15}>
-              {'Layihə adı'}
+              {'Şirkət adı'}
             </AppText>
             <View styles={styles.input_item}>
               <TextInput
-                placeholder="Layihə-1"
-                value={projectName}
-                onChangeText={setProjectName}
+                placeholder="Şirkət-1"
+                value={companyName}
+                onChangeText={setCompanyName}
                 autoCapitalize="none"
                 keyboardType="default"
                 returnKeyType="done"
@@ -171,7 +140,7 @@ export default function AddProjectScreen({navigation, route}) {
               color="red"
               fontSize={14}
               style={styles.error_text}>
-              {inputErrors.projectNameError}
+              {inputErrors.companyNameError}
             </AppText>
           </View>
 
@@ -182,13 +151,13 @@ export default function AddProjectScreen({navigation, route}) {
               fontSize={13}
               ml={20}
               mb={15}>
-              {'Layihənin təsviri'}
+              {'Şirkət rəhbəri'}
             </AppText>
             <View styles={styles.input_item}>
               <TextInput
-                placeholder="Layihənin təsviri-1"
-                value={projectDescription}
-                onChangeText={setProjectDescription}
+                placeholder="Şirkət rəhbəri-1"
+                value={companyHead}
+                onChangeText={setCompanyHead}
                 autoCapitalize="none"
                 keyboardType="default"
                 returnKeyType="done"
@@ -200,7 +169,7 @@ export default function AddProjectScreen({navigation, route}) {
               color="red"
               fontSize={14}
               style={styles.error_text}>
-              {inputErrors.projectDescriptionError}
+              {inputErrors.companyHeadError}
             </AppText>
           </View>
 
@@ -211,66 +180,54 @@ export default function AddProjectScreen({navigation, route}) {
               fontSize={13}
               ml={20}
               mb={15}>
-              {'Podratçı'}
+              {'Email'}
             </AppText>
-            <TouchableOpacity
-              onPress={handleChooseContractor}
-              activeOpacity={0.7}
-              style={styles.account_info_item}>
-              {selectedContractor ? (
-                <View>
-                  <AppText variant="medium" color="#A3A3A3" fontSize={13}>
-                    {selectedContractor.name}
-                  </AppText>
-                </View>
-              ) : (
-                <AppText variant="medium" color="black" fontSize={15}>
-                  Podratçı seçin
-                </AppText>
-              )}
-              <ArrowCircle />
-            </TouchableOpacity>
-            {/* <AppText
-                variant="medium"
-                color="red"
-                fontSize={14}
-                style={styles.error_text}>
-                {accountError}
-              </AppText> */}
-          </View>
-
-          <View style={styles.payment_item}>
-            <AppText
-              variant="medium"
-              color="#A3A3A3"
-              fontSize={13}
-              ml={20}
-              mb={15}>
-              {'Surveyor'}
-            </AppText>
-            <TouchableOpacity
-              onPress={handleChooseSurveyor}
-              activeOpacity={0.7}
-              style={styles.account_info_item}>
-              {selectedSurveyor ? (
-                <View>
-                  <AppText variant="medium" color="#A3A3A3" fontSize={13}>
-                    {selectedSurveyor.name}
-                  </AppText>
-                </View>
-              ) : (
-                <AppText variant="medium" color="black" fontSize={15}>
-                  Surveyor seçin
-                </AppText>
-              )}
-              <ArrowCircle />
-            </TouchableOpacity>
+            <View styles={styles.input_item}>
+              <TextInput
+                placeholder="user@gmail.com"
+                value={email}
+                onChangeText={setEmail}
+                autoCapitalize="none"
+                keyboardType="default"
+                returnKeyType="done"
+                style={styles.input_control}
+              />
+            </View>
             <AppText
               variant="medium"
               color="red"
               fontSize={14}
               style={styles.error_text}>
-              {surveyorContractorError}
+              {inputErrors.emailError}
+            </AppText>
+          </View>
+
+          <View style={styles.payment_item}>
+            <AppText
+              variant="medium"
+              color="#A3A3A3"
+              fontSize={13}
+              ml={20}
+              mb={15}>
+              {'Telefon nömrəsi'}
+            </AppText>
+            <View styles={styles.input_item}>
+              <TextInput
+                placeholder="+994 50 123 45 67"
+                value={phoneNumber}
+                onChangeText={setPhoneNumber}
+                autoCapitalize="none"
+                keyboardType="phone-pad"
+                returnKeyType="done"
+                style={styles.input_control}
+              />
+            </View>
+            <AppText
+              variant="medium"
+              color="red"
+              fontSize={14}
+              style={styles.error_text}>
+              {inputErrors.phoneNumberError}
             </AppText>
           </View>
         </View>
@@ -285,18 +242,6 @@ export default function AddProjectScreen({navigation, route}) {
             Təsdiq et
           </AppText>
         </TouchableOpacity>
-        <PersonChoose
-          data={contractors}
-          modalVisible={chooseContractor}
-          onPress={handleChooseContractor}
-          setSelectedItem={setSelectedContractor}
-        />
-        <PersonChoose
-          data={surveyors}
-          modalVisible={chooseSurveyor}
-          onPress={handleChooseSurveyor}
-          setSelectedItem={setSelectedSurveyor}
-        />
       </View>
     </HeaderLayout>
   );

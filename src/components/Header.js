@@ -19,21 +19,6 @@ import {verticalScale} from '../common/Metrics';
 const Header = () => {
   const navigation = useNavigation();
   const {user} = useAuthentication();
-  const [hasNotification, setHasNotification] = useState(false);
-
-  const getUnreadNotificationsCount = async () => {
-    // if unread notifications count more than 0
-    setHasNotification(true);
-
-    // if unread notifications count equal to 0
-    //setHasNotification(false);
-  };
-
-  useFocusEffect(
-    useCallback(() => {
-      getUnreadNotificationsCount();
-    }, []),
-  );
 
   return (
     <View style={styles.header_main}>
