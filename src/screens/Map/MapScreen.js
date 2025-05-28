@@ -1,4 +1,4 @@
-import {View, TouchableOpacity, Dimensions} from 'react-native';
+import {View, TouchableOpacity, Dimensions, Platform} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 
 import {COLORS} from '@components/styles/colors';
@@ -41,15 +41,15 @@ const MapScreen = () => {
   } = useMapController(MAX_TRANSLATE_Y);
   return (
     <View style={styles.container}>
-      {activeDetail && (
-        <View style={[styles.map_header, {top: insets.top}]}>
+      <View style={[styles.map_header, {top: insets.top}]}>
+        {activeDetail && (
           <TouchableOpacity
             style={styles.map_header_back}
             onPress={handleBackPress}>
             <ArrowIcon />
           </TouchableOpacity>
-        </View>
-      )}
+        )}
+      </View>
 
       <MapView
         ref={mapRef}
