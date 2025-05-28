@@ -71,10 +71,12 @@ def enableProguardInReleaseBuilds = true
  * this variant is about 6MiB larger per architecture than default.
  */
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
-
+/* 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
-def map_api_key = properties.getProperty('MAP_API_KEY')
+def map_api_key = properties.getProperty('MAP_API_KEY') */
+
+def map_api_key ="AIzaSyCYoIeCv7MVM8Jw2KoQEKvym1b-7mV-kRc"
 
 android {
     ndkVersion rootProject.ext.ndkVersion
