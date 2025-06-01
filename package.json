@@ -7,6 +7,7 @@
     "android-bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
     "ios-bundle": "react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios",
     "android-prod": "npx react-native run-android --mode=prodDebug --appIdSuffix=prod",
+    "android-prod-release": "cd android && ./gradlew assembleProdRelease",
     "ios-prod": "ENVFILE=.env.prod npx react-native run-ios --simulator 'iPhone 16 Pro'",
     "ios": "react-native run-ios",
     "lint": "eslint .",
