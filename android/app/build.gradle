@@ -76,7 +76,7 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 def map_api_key = properties.getProperty('MAP_API_KEY') */
 
-def map_api_key ="AIzaSyCYoIeCv7MVM8Jw2KoQEKvym1b-7mV-kRc"
+def map_api_key ="AIzaSyC2tY8zNm_DeTagSqEn08bTvj-9Rm_MEs0"
 
 android {
     ndkVersion rootProject.ext.ndkVersion
@@ -141,6 +141,18 @@ android {
     }
 
     signingConfigs {
+        release { 
+            storeFile file('/Users/mahdi.g/Projects/Surveyor/android/app/surveyor_release_key.keystore')
+            storePassword 'Surveyor135@'
+            keyPassword 'Surveyor135@'
+            keyAlias 'surveyor_release_key'
+            if(project.hasProperty('MYAPP_UPLOAD_STORE_FILE')){
+                storeFile file(MYAPP_UPLOAD_STORE_FILE)
+                storePassword MYAPP_UPLOAD_STORE_PASSWORD
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS
+                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+            }
+        }
         debug {
             storeFile file('debug.keystore')
             storePassword 'android'
@@ -150,14 +162,14 @@ android {
     }
     buildTypes {
         debug {
-            //signingConfig signingConfigs.debug
+            signingConfig signingConfigs.debug
             manifestPlaceholders = [map_api_key: map_api_key]
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
-            //signingConfig signingConfigs.debug
             shrinkResources enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             manifestPlaceholders = [map_api_key: map_api_key]
