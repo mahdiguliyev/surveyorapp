@@ -1,12 +1,22 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import CameraScreen from '../../screens/Camera/CameraScreen';
 import PhotoEditScreen from '../../screens/Camera/PhotoEditScreen';
+import GalleryScreen from '../../screens/Camera/GalleryScreen';
 
 const Stack = createStackNavigator();
 
 const CameraStack = ({navigation}) => {
   return (
-    <Stack.Navigator initialRouteName="Camera">
+    <Stack.Navigator initialRouteName="Gallery">
+      <Stack.Screen
+        name={'Gallery'}
+        component={GalleryScreen}
+        options={{
+          headerTitleAlign: 'center',
+          gestureEnabled: false,
+          headerShown: false,
+        }}
+      />
       <Stack.Screen
         name={'Camera'}
         component={CameraScreen}

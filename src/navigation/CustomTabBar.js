@@ -9,7 +9,6 @@ import Animated, {
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 
 const hiddenTabRoutes = [
-  'CameraStack',
   'Camera',
   'PhotoEdit',
   'Contractors',

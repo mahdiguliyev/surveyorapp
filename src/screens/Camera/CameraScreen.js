@@ -261,11 +261,7 @@ const CameraScreen = () => {
         <View style={styles.header}>
           <TouchableOpacity
             onPress={() => {
-              const resetAction = CommonActions.reset({
-                index: 0,
-                routes: [{name: 'HomeStack'}],
-              });
-              navigation.dispatch(resetAction);
+              navigation.goBack();
             }}
             style={styles.closeButton}>
             <ArrowIcon color={COLORS.white} />
