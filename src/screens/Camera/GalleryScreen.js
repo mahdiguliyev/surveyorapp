@@ -140,6 +140,7 @@ const SectionTitle = ({children}) => (
 );
 
 const GalleryScreen = ({navigation, route}) => {
+  const [allImages, setAllImages] = useState([]);
   const [images, setImages] = useState([]);
   const [chooseImageType, setChooseImageType] = useState(false);
   const [selectedType, setSelectedType] = useState(image_types[0]);
@@ -160,6 +161,14 @@ const GalleryScreen = ({navigation, route}) => {
   };
 
   const handleSelectImageType = item => {
+    const filtered = allImages.filter(img => {
+      if (item.type === 'used_images') return img.isUsed;
+      if (item.type === 'unused_images') return !img.isUsed;
+      return true;
+    });
+
+    setImages(filtered);
+
     setSelectedType(item);
     setChooseImageType(false);
   };
@@ -192,12 +201,14 @@ const GalleryScreen = ({navigation, route}) => {
       ...img,
       isSelected: false,
     }));
+    setAllImages(dataWithSelection);
     setImages(dataWithSelection);
   };
 
   useFocusEffect(
     React.useCallback(() => {
       selectedImages.current = [];
+      setSelectedType(image_types[0]);
       getImages();
     }, []),
   );
