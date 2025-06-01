@@ -2,6 +2,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import CameraScreen from '../../screens/Camera/CameraScreen';
 import PhotoEditScreen from '../../screens/Camera/PhotoEditScreen';
 import GalleryScreen from '../../screens/Camera/GalleryScreen';
+import CreatingReportScreen from '../../screens/Camera/CreatingReportScreen';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,15 @@ const CameraStack = ({navigation}) => {
       <Stack.Screen
         name={'Camera'}
         component={CameraScreen}
+        options={{
+          headerTitleAlign: 'center',
+          gestureEnabled: false,
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name={'CreatingReport'}
+        component={CreatingReportScreen}
         options={{
           headerTitleAlign: 'center',
           gestureEnabled: false,

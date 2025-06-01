@@ -145,7 +145,7 @@ export default function AddProjectScreen({navigation, route}) {
         </Pressable>
       }>
       <View style={styles.creditcard_payment_container}>
-        <View style={styles.payment_top}>
+        <View>
           <View style={styles.payment_item}>
             <AppText
               variant="medium"

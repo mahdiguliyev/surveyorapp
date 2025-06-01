@@ -19,8 +19,8 @@ import {FlatList} from 'react-native-gesture-handler';
 import {COLORS} from '../../components/styles/colors';
 import React, {useRef, useState} from 'react';
 import {useFocusEffect} from '@react-navigation/native';
-import ImageListItem from './components/ImageListItem';
 import ReportsTypeChoose from '../Reports/components/ReportsTypeChoose';
+import GalleryItem from './components/GalleryItem';
 
 const window = Dimensions.get('window');
 const image_types = [
@@ -213,7 +213,10 @@ const GalleryScreen = ({navigation, route}) => {
   };
 
   const makeReportWithSelectedImages = () => {
-    alert('Report hazırıanma səhifəsinə yönləndirilir');
+    navigation.navigate('CreatingReport', {
+      images: selectedImages.current,
+    });
+    selectedImages.current = [];
   };
 
   const openCamera = () => {
@@ -276,7 +279,7 @@ const GalleryScreen = ({navigation, route}) => {
             data={images}
             keyExtractor={item => item.id}
             renderItem={({item}) => (
-              <ImageListItem item={item} handleImagePress={handleImagePress} />
+              <GalleryItem item={item} handleImagePress={handleImagePress} />
             )}
             numColumns={3}
             contentContainerStyle={styles.contentContainer}
