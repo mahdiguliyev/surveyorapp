@@ -4,16 +4,13 @@ import MenuDotsIcon from '@assets/svg/MenuDotsIcon';
 import {useNavigation} from '@react-navigation/native';
 import {memo} from 'react';
 
-const ListItem = memo(({item, headers}) => {
+const ListItem = memo(({item, headers, handleReportDetail}) => {
   const navigation = useNavigation();
 
-  const handleItem = item => {
-    alert('Conractor details screen');
-  };
   return (
     <View style={styles.product_account_item}>
       <TouchableOpacity
-        onPress={() => handleItem(item)}
+        onPress={() => handleReportDetail(item)}
         activeOpacity={0.5}
         style={styles.card_body}>
         <View style={styles.colum_flex}>

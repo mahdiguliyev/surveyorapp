@@ -192,17 +192,25 @@ const ReportsScreen = ({navigation, route}) => {
   };
 
   const handleCreateReport = () => {
+    navigation.navigate('CreatingReport', {
+      images: selectedImages.current,
+    });
+  };
+
+  const handleReportDetail = item => {
     if (selectedType.type === 'check_report') {
-      navigation.navigate('CreatingReport', {
+      navigation.navigate('CheckReportDetail', {
+        item: item,
         images: selectedImages.current,
       });
-    } else if (selectedType.type === 'final_report') {
-      Alert.alert(
-        'Hesabat yarat',
-        'Hesabat yaratmaq üçün kamera modalı açılır',
-      );
+    } else {
+      navigation.navigate('FinalReportDetail', {
+        item: item,
+        images: selectedImages.current,
+      });
     }
   };
+
   return (
     <View style={styles.container}>
       <StatusBar
@@ -259,7 +267,11 @@ const ReportsScreen = ({navigation, route}) => {
               data={checkReports}
               keyExtractor={item => item.no}
               renderItem={({item}) => (
-                <ListItem item={item} headers={headers_check_report} />
+                <ListItem
+                  item={item}
+                  headers={headers_check_report}
+                  handleReportDetail={handleReportDetail}
+                />
               )}
               contentContainerStyle={styles.contentContainer}
               onEndReached={getMoreCheckReports}
