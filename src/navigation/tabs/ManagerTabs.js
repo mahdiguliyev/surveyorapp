@@ -50,7 +50,7 @@ const ManagerTabs = () => {
       <Tab.Screen
         name="CameraStack"
         component={CameraStack}
-        options={() => createTabOptions('Camera', PhotoCameraIcon)}
+        options={() => createTabOptions('Camera', GalleryIcon)}
       />
       <Tab.Screen
         name="ReportsStack"

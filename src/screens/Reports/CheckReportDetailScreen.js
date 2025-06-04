@@ -63,8 +63,40 @@ const CheckReportDetailScreen = ({navigation, route}) => {
 
   const handleConfirmReport = () => {
     Alert.alert(
-      'Hesabat yaradıldı',
-      'Hesabatınız uğurla yaradıldı.',
+      'Hesabat',
+      'Hesabatınız uğurla təstiq edildi.',
+      [
+        {
+          text: 'OK',
+          onPress: () => {
+            navigation.goBack();
+          },
+        },
+      ],
+      {cancelable: false},
+    );
+  };
+
+  const handleModifyReport = () => {
+    Alert.alert(
+      'Hesabat',
+      'Hesabatınıza düzəliş edildi.',
+      [
+        {
+          text: 'OK',
+          onPress: () => {
+            navigation.goBack();
+          },
+        },
+      ],
+      {cancelable: false},
+    );
+  };
+
+  const handleRejectReport = () => {
+    Alert.alert(
+      'Hesabat',
+      'Hesabatınız imtina edildi.',
       [
         {
           text: 'OK',
@@ -211,7 +243,7 @@ const CheckReportDetailScreen = ({navigation, route}) => {
         <View style={styles.buttons}>
           <TouchableOpacity
             onPress={() => {
-              handleConfirmReport();
+              handleRejectReport();
             }}
             activeOpacity={0.7}
             style={[styles.send_button, {backgroundColor: COLORS.red}]}>
@@ -221,7 +253,7 @@ const CheckReportDetailScreen = ({navigation, route}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              handleConfirmReport();
+              handleModifyReport();
             }}
             activeOpacity={0.7}
             style={[styles.send_button, {backgroundColor: COLORS.orange}]}>

@@ -3,6 +3,7 @@ import ReportsScreen from '../../screens/Reports/ReportsScreen';
 import CreatingReportScreen from '../../screens/Camera/CreatingReportScreen';
 import CheckReportDetailScreen from '../../screens/Reports/CheckReportDetailScreen';
 import FinalReportDetailScreen from '../../screens/Reports/FinalReportDetail';
+import FinalReportItemDetailScreen from '../../screens/Reports/FinalReportItemDetailScreen';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,15 @@ const ReportsStack = () => {
       <Stack.Screen
         name={'FinalReportDetail'}
         component={FinalReportDetailScreen}
+        options={{
+          headerTitleAlign: 'center',
+          gestureEnabled: false,
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name={'FinalReportItemDetail'}
+        component={FinalReportItemDetailScreen}
         options={{
           headerTitleAlign: 'center',
           gestureEnabled: false,

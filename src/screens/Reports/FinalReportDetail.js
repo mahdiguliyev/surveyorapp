@@ -94,8 +94,8 @@ const FinalReportDetailScreen = ({navigation, route}) => {
   };
 
   const handleModifyItem = item => {
-    Alert.alert('Item', 'Item dəyişdirildi.');
-    navigation.goBack();
+    setItemModal(false);
+    navigation.navigate('FinalReportItemDetail');
   };
 
   const handleSelectedItem = item => {
@@ -331,6 +331,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: 'relative',
+    backgroundColor: '#fff',
+  },
+  scroll_padding: {
+    paddingBottom: 50,
     backgroundColor: '#fff',
   },
   contentContainer: {

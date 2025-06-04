@@ -24,7 +24,7 @@ export default function LoginScreen({navigation}) {
     setLoading(true);
 
     const {userName, password} = values;
-    if (userName === 'test' && password === 'test123') {
+    if (userName === 'manager' && password === 'manager123') {
       setLoading(false);
       login({username: 'mahdiguliyev', role: 'manager'});
       //navigation.navigate('Bottom');
