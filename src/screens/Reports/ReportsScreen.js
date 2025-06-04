@@ -11,11 +11,12 @@ import {
 import AppText from '@components/AppText';
 import ChangeIcon from '@assets/svg/ChangeIcon';
 import FilterIcon from '@assets/svg/FilterIcon';
+import PlusIcon from '@assets/svg/PlusIcon';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {horizontalScale, verticalScale} from '../../common/Metrics';
 import {FlatList} from 'react-native-gesture-handler';
 import {COLORS} from '../../components/styles/colors';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import ListItem from '../Home/components/ListItem';
 import ReportsTypeChoose from './components/ReportsTypeChoose';
 import {useFocusEffect} from '@react-navigation/native';
@@ -73,6 +74,34 @@ const data_final_report = [
 
 const data_final_report_2 = [];
 
+const images_data_1 = [
+  {
+    id: '1',
+    uri: require('../../assets/images/unusedimages/surveyor_image_3.jpg'),
+    isUsed: true,
+  },
+  {
+    id: '2',
+    uri: require('../../assets/images/unusedimages/surveyor_image_3.jpg'),
+    isUsed: true,
+  },
+  {
+    id: '3',
+    uri: require('../../assets/images/unusedimages/surveyor_image_3.jpg'),
+    isUsed: true,
+  },
+  {
+    id: '4',
+    uri: require('../../assets/images/unusedimages/surveyor_image_3.jpg'),
+    isUsed: false,
+  },
+  {
+    id: '5',
+    uri: require('../../assets/images/unusedimages/surveyor_image_3.jpg'),
+    isUsed: true,
+  },
+];
+
 const SectionTitle = ({children}) => (
   <AppText
     variant="medium"
@@ -90,11 +119,10 @@ const ReportsScreen = ({navigation, route}) => {
   const [choseReportType, setChooseReportType] = useState(false);
   const [selectedType, setSelectedType] = useState(report_types[0]);
   const [pagingLoading, setPagingLoading] = useState(false);
-  const [buttonPositionStatus, setButtonPositionStatus] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
 
   const currentPage = useRef(1);
   const totalPages = useRef(1);
+  const selectedImages = useRef(images_data_1);
 
   const insets = useSafeAreaInsets();
   const headerPaddingTop =
@@ -163,11 +191,18 @@ const ReportsScreen = ({navigation, route}) => {
     }, 2000); // wait for 2 seconds
   };
 
-  const toggleModal = () => {
-    alert('Modal açılır');
-    setModalVisible(prev => !prev);
+  const handleCreateReport = () => {
+    if (selectedType.type === 'check_report') {
+      navigation.navigate('CreatingReport', {
+        images: selectedImages.current,
+      });
+    } else if (selectedType.type === 'final_report') {
+      Alert.alert(
+        'Hesabat yarat',
+        'Hesabat yaratmaq üçün kamera modalı açılır',
+      );
+    }
   };
-
   return (
     <View style={styles.container}>
       <StatusBar
@@ -285,6 +320,13 @@ const ReportsScreen = ({navigation, route}) => {
         </View>
       )}
 
+      <View style={styles.add_button_container}>
+        <TouchableOpacity
+          style={styles.add_button}
+          onPress={handleCreateReport}>
+          <PlusIcon />
+        </TouchableOpacity>
+      </View>
       <ReportsTypeChoose
         data={report_types}
         modalVisible={choseReportType}
