@@ -2,6 +2,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import ReportsScreen from '../../screens/Reports/ReportsScreen';
 import CreatingReportScreen from '../../screens/Camera/CreatingReportScreen';
 import CheckReportDetailScreen from '../../screens/Reports/CheckReportDetailScreen';
+import FinalReportDetailScreen from '../../screens/Reports/FinalReportDetail';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,15 @@ const ReportsStack = () => {
       <Stack.Screen
         name={'CheckReportDetail'}
         component={CheckReportDetailScreen}
+        options={{
+          headerTitleAlign: 'center',
+          gestureEnabled: false,
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name={'FinalReportDetail'}
+        component={FinalReportDetailScreen}
         options={{
           headerTitleAlign: 'center',
           gestureEnabled: false,

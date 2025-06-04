@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
+  ScrollView,
 } from 'react-native';
 import AppText from '@components/AppText';
 import HeaderLayout from '@components/general/HeaderLayout';
@@ -18,14 +19,34 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {horizontalScale, verticalScale} from '../../common/Metrics';
 import {useState} from 'react';
 import {FONTS} from '../../components/styles/fonts';
-import ImageList from '../Camera/components/ImageList';
 import {COLORS} from '../../components/styles/colors';
+import CheckReportItem from './components/CheckReportItem';
+import ConfirmationModal from '../../components/sheets/ConfirmationModal';
 
-const window = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 const check_list_items = [
-  {type: 1, title: 'Yoxlama 1'},
-  {type: 2, title: 'Yoxlama 2'},
-  {type: 3, title: 'Yoxlama 3'},
+  {type: 1, title: 'NCR'},
+  {type: 2, title: 'NCR 2'},
+  {type: 3, title: 'NCR 3'},
+];
+
+const ncr_list_items = [
+  {type: 1, title: 'R-NCR-AK-002'},
+  {type: 2, title: 'R-NCR-AK-003'},
+  {type: 3, title: 'R-NCR-AK-004'},
+];
+
+const headers_1 = [
+  {key: 'no', label: 'No'},
+  {key: 'date', label: 'Tarix'},
+  {key: 'user', label: 'Surveyor'},
+];
+
+const data_1 = [
+  {no: 'H-AK-001', date: '01.05.2025', user: 'Mahdi Guliyev'},
+  {no: 'H-AK-002', date: '07.05.2025', user: 'Ugur Cebeci'},
+  {no: 'H-AK-003', date: '10.05.2025', user: 'Saleh Nabiyev'},
+  {no: 'H-AK-004', date: '15.05.2025', user: 'Yalchin Talibov'},
 ];
 
 const SectionTitle = ({children}) => (
@@ -38,13 +59,15 @@ const SectionTitle = ({children}) => (
   </AppText>
 );
 
-const CheckReportDetailScreen = ({navigation, route}) => {
-  const {images} = route?.params;
+const FinalReportDetailScreen = ({navigation, route}) => {
+  const {image, item} = route?.params;
   const [selectedCheckList, setSelectedCheckList] = useState(null);
+  const [selectedNSRList, setSelectedNSRList] = useState(null);
   const [desc, setDesc] = useState('');
   const [chooseCheckList, setChooseCheckList] = useState(false);
-  const [chooseImageType, setChooseImageType] = useState(false);
+  const [itemModal, setItemModal] = useState(false);
   const [selectedType, setSelectedType] = useState(check_list_items[0]);
+  const [selectedNCR, setSelectedNCR] = useState(ncr_list_items[0]);
 
   const [checkListError, setCheckListError] = useState('');
   const [inputErrors, setInputErrors] = useState({
@@ -61,10 +84,45 @@ const CheckReportDetailScreen = ({navigation, route}) => {
     navigation.goBack();
   };
 
+  const handleChooseItem = () => {
+    setItemModal(!itemModal);
+  };
+
+  const handleDeleteItem = item => {
+    Alert.alert('Item', 'Item silindi.');
+    navigation.goBack();
+  };
+
+  const handleModifyItem = item => {
+    Alert.alert('Item', 'Item dəyişdirildi.');
+    navigation.goBack();
+  };
+
+  const handleSelectedItem = item => {
+    setItemModal(true);
+    // Alert.alert('Hesabat', 'Hesabat detallarını görmək üçün bu bölməyə keçin.');
+  };
+
   const handleConfirmReport = () => {
     Alert.alert(
-      'Hesabat yaradıldı',
-      'Hesabatınız uğurla yaradıldı.',
+      'Hesabat',
+      'Hesabatınız uğurla təstiq edildi.',
+      [
+        {
+          text: 'OK',
+          onPress: () => {
+            navigation.goBack();
+          },
+        },
+      ],
+      {cancelable: false},
+    );
+  };
+
+  const handleRejectReport = () => {
+    Alert.alert(
+      'Hesabat',
+      'Hesabatınız uğurla imtina edildi.',
       [
         {
           text: 'OK',
@@ -83,7 +141,7 @@ const CheckReportDetailScreen = ({navigation, route}) => {
 
   return (
     <HeaderLayout
-      mainTitle={'H-AK-002'}
+      mainTitle={'H-AK-001'}
       scroll_padding={styles.scroll_padding}
       leftButton={
         <Pressable onPress={goBack}>
@@ -91,60 +149,52 @@ const CheckReportDetailScreen = ({navigation, route}) => {
         </Pressable>
       }>
       <View style={styles.form_container}>
-        <View style={styles.project_selection_container}>
-          <View>
-            <TouchableOpacity
-              onPress={handleChooseCheckList}
-              activeOpacity={0.7}
-              style={styles.checklist_press_item}>
-              {selectedCheckList ? (
-                <View>
-                  <AppText variant="medium" color="#A3A3A3" fontSize={13}>
-                    {selectedCheckList.title}
-                  </AppText>
-                </View>
-              ) : (
-                <AppText variant="medium" color="black" fontSize={15}>
-                  Ağdam-Kəlbəcər
+        <View style={styles.checklist_item}>
+          <AppText
+            variant="medium"
+            color="#A3A3A3"
+            fontSize={13}
+            ml={20}
+            mb={15}>
+            {'Yoxlama hesabatları'}
+          </AppText>
+          <TouchableOpacity
+            onPress={handleChooseCheckList}
+            activeOpacity={0.7}
+            style={[styles.checklist_press_item]}>
+            {selectedCheckList ? (
+              <View>
+                <AppText variant="medium" color="#A3A3A3" fontSize={13}>
+                  {selectedCheckList.title}
                 </AppText>
-              )}
-            </TouchableOpacity>
-            <AppText
-              variant="medium"
-              color="red"
-              fontSize={14}
-              style={styles.error_text}>
-              {checkListError}
-            </AppText>
-          </View>
-          <View>
-            <TouchableOpacity
-              onPress={handleChooseCheckList}
-              activeOpacity={0.7}
-              style={styles.checklist_press_item}>
-              {selectedCheckList ? (
-                <View>
-                  <AppText variant="medium" color="#A3A3A3" fontSize={13}>
-                    {selectedCheckList.title}
-                  </AppText>
-                </View>
-              ) : (
-                <AppText variant="medium" color="black" fontSize={15}>
-                  Kəlbəcər-İstisu
-                </AppText>
-              )}
-            </TouchableOpacity>
-            <AppText
-              variant="medium"
-              color="red"
-              fontSize={14}
-              style={styles.error_text}>
-              {checkListError}
-            </AppText>
-          </View>
+              </View>
+            ) : (
+              <AppText variant="medium" color="black" fontSize={15}>
+                H-AK-002, H-AK-0043, H-AK-0023
+              </AppText>
+            )}
+            <ArrowCircle />
+          </TouchableOpacity>
         </View>
-        <View>
-          <ImageList selectedImages={images} />
+        <View style={{height: height * 0.2}}>
+          <ScrollView
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}>
+            <View style={{flex: 1}}>
+              <View style={{marginTop: 20}}>
+                {data_1.map((item, index) => {
+                  const indexKey = index + 1;
+                  return (
+                    <CheckReportItem
+                      key={indexKey}
+                      item={item}
+                      handleSelectedItem={handleSelectedItem}
+                    />
+                  );
+                })}
+              </View>
+            </View>
+          </ScrollView>
         </View>
         <View style={styles.checklist_item}>
           <AppText
@@ -153,7 +203,7 @@ const CheckReportDetailScreen = ({navigation, route}) => {
             fontSize={13}
             ml={20}
             mb={15}>
-            {'Qeyd'}
+            {'Təsvir'}
           </AppText>
           <View styles={styles.input_item}>
             <TextInput
@@ -181,12 +231,12 @@ const CheckReportDetailScreen = ({navigation, route}) => {
             fontSize={13}
             ml={20}
             mb={15}>
-            {'Yoxlama siyahısı'}
+            {'Hesabat tipi'}
           </AppText>
           <TouchableOpacity
             onPress={handleChooseCheckList}
             activeOpacity={0.7}
-            style={styles.checklist_press_item}>
+            style={[styles.checklist_press_item, {marginBottom: 20}]}>
             {selectedCheckList ? (
               <View>
                 <AppText variant="medium" color="#A3A3A3" fontSize={13}>
@@ -195,7 +245,32 @@ const CheckReportDetailScreen = ({navigation, route}) => {
               </View>
             ) : (
               <AppText variant="medium" color="black" fontSize={15}>
-                Yoxlama siyahını seçin
+                NCR
+              </AppText>
+            )}
+            <ArrowCircle />
+          </TouchableOpacity>
+          <AppText
+            variant="medium"
+            color="#A3A3A3"
+            fontSize={13}
+            ml={20}
+            mb={15}>
+            {'NCR hesabat'}
+          </AppText>
+          <TouchableOpacity
+            onPress={handleChooseCheckList}
+            activeOpacity={0.7}
+            style={styles.checklist_press_item}>
+            {selectedNSRList ? (
+              <View>
+                <AppText variant="medium" color="#A3A3A3" fontSize={13}>
+                  {selectedNSRList.title}
+                </AppText>
+              </View>
+            ) : (
+              <AppText variant="medium" color="black" fontSize={15}>
+                R-NCR-AK-002
               </AppText>
             )}
             <ArrowCircle />
@@ -211,7 +286,7 @@ const CheckReportDetailScreen = ({navigation, route}) => {
         <View style={styles.buttons}>
           <TouchableOpacity
             onPress={() => {
-              handleConfirmReport();
+              handleRejectReport();
             }}
             activeOpacity={0.7}
             style={[styles.send_button, {backgroundColor: COLORS.red}]}>
@@ -219,16 +294,7 @@ const CheckReportDetailScreen = ({navigation, route}) => {
               İmtina
             </AppText>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              handleConfirmReport();
-            }}
-            activeOpacity={0.7}
-            style={[styles.send_button, {backgroundColor: COLORS.orange}]}>
-            <AppText variant="medium" color="#fff" fontSize={16}>
-              Düzəliş
-            </AppText>
-          </TouchableOpacity>
+
           <TouchableOpacity
             onPress={() => {
               handleConfirmReport();
@@ -247,12 +313,19 @@ const CheckReportDetailScreen = ({navigation, route}) => {
           onPress={handleChooseCheckList}
           setSelectedItem={setSelectedCheckList}
         /> */}
+        <ConfirmationModal
+          data={null}
+          modalVisible={itemModal}
+          onPress={handleChooseItem}
+          handleDelete={handleDeleteItem}
+          handleModify={handleModifyItem}
+        />
       </View>
     </HeaderLayout>
   );
 };
 
-export default CheckReportDetailScreen;
+export default FinalReportDetailScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -296,8 +369,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   checklist_item: {
-    marginTop: 30,
+    marginTop: 15,
   },
+
   checklist_press_item: {
     borderWidth: 1,
     borderColor: '#D7D7D7',
@@ -314,7 +388,7 @@ const styles = StyleSheet.create({
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',
-    width: '32%',
+    width: '45%',
   },
   input_control: {
     paddingLeft: 20,
@@ -337,5 +411,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  container: {
+    width: width - 40,
+    aspectRatio: 1.9,
+    overflow: 'hidden',
+    paddingRight: 5,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 20,
   },
 });

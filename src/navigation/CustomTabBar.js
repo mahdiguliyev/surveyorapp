@@ -17,6 +17,7 @@ const hiddenTabRoutes = [
   'AddContractor',
   'CreatingReport',
   'CheckReportDetail',
+  'FinalReportDetail',
 ];
 
 const getTabVisibility = state => {

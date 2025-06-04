@@ -206,7 +206,7 @@ const ReportsScreen = ({navigation, route}) => {
     } else {
       navigation.navigate('FinalReportDetail', {
         item: item,
-        images: selectedImages.current,
+        image: selectedImages.current[0],
       });
     }
   };
@@ -307,7 +307,11 @@ const ReportsScreen = ({navigation, route}) => {
               data={finalReports}
               keyExtractor={item => item.no}
               renderItem={({item}) => (
-                <ListItem item={item} headers={headers_final_report} />
+                <ListItem
+                  item={item}
+                  headers={headers_final_report}
+                  handleReportDetail={handleReportDetail}
+                />
               )}
               contentContainerStyle={styles.contentContainer}
               onEndReached={getMoreFinalReports}
@@ -332,13 +336,16 @@ const ReportsScreen = ({navigation, route}) => {
         </View>
       )}
 
-      <View style={styles.add_button_container}>
-        <TouchableOpacity
-          style={styles.add_button}
-          onPress={handleCreateReport}>
-          <PlusIcon />
-        </TouchableOpacity>
-      </View>
+      {selectedType.type === 'check_report' && (
+        <View style={styles.add_button_container}>
+          <TouchableOpacity
+            style={styles.add_button}
+            onPress={handleCreateReport}>
+            <PlusIcon />
+          </TouchableOpacity>
+        </View>
+      )}
+
       <ReportsTypeChoose
         data={report_types}
         modalVisible={choseReportType}
